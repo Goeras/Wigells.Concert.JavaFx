@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0 //EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Konfiguration mot databas -->
+        <property name = "connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name = "connection.url">jdbc:mysql://localhost/wigells_concert?serverTimezone=UTC</property> <!--Ersätt "wigells_concert" med riktiga databasnamnet-->
+        <property name = "dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name = "connection.username">root</property> <!--Kolla så att username & password är rätt mot databasen-->
+        <property name = "connection.password">root</property>
+        <property name = "connection.pool_size">3</property>
+        <property name = "current_session_context_class">thread</property>
+        <property name = "show_sql">true</property>
+        <property name = "format_sql">false</property>
+        <property name = "hbm2ddl.auto">update</property>
+
+        <!--Vilka tabeller som ska mappas mot motsvarande tabell i databasen-->
+        <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.Customer"/>
+        <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena"/>
+        <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert"/>
+        <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.Address"/>
+        <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.WC"/>
+
+
+    </session-factory>
+</hibernate-configuration>
