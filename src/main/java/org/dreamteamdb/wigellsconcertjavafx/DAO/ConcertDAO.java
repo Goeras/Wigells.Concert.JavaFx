@@ -17,7 +17,6 @@ public class ConcertDAO {
     }
 
     public void createConcert(Concert concert){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
@@ -34,7 +33,6 @@ public class ConcertDAO {
     }
 
     public Concert readConcert(int id){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
@@ -45,7 +43,6 @@ public class ConcertDAO {
     }
 
     public List<Concert> readAllConcerts(){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
@@ -54,7 +51,6 @@ public class ConcertDAO {
     }
 
     public void updateConcert(Concert concert){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
@@ -70,7 +66,6 @@ public class ConcertDAO {
     }
 
     public void deleteConcert(Concert concert){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{

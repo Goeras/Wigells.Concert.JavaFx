@@ -18,7 +18,6 @@ public class AddressDAO {
     }
 
     public void createAddress(Address address) {
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
         try {
@@ -36,7 +35,6 @@ public class AddressDAO {
     }
 
     public Address readAddress(int id){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
         Address address = new Address();
@@ -55,7 +53,6 @@ public class AddressDAO {
         return address;
     }
     public List<Address> readAllAddresses(){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         List<Address> addresses = new ArrayList<>();
         try{
@@ -75,7 +72,6 @@ public class AddressDAO {
     }
 
     public void updateAddress(Address address){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         try {
@@ -91,7 +87,6 @@ public class AddressDAO {
     }
 
     public void deleteAddress(Address address){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
         try {

@@ -18,7 +18,6 @@ public class WcDAO {
     }
 
     public void createWC(WC wc) {
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
         try {
@@ -36,7 +35,6 @@ public class WcDAO {
     }
 
     public WC readWC(int id){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
         WC wc = new WC();
@@ -55,7 +53,6 @@ public class WcDAO {
         return wc;
     }
     public List<WC> readAllWC(){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         List<WC> wc = new ArrayList<>();
         try{
@@ -75,7 +72,6 @@ public class WcDAO {
     }
 
     public void updateWC(WC wc){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         try {
@@ -91,7 +87,6 @@ public class WcDAO {
     }
 
     public void deleteWC(WC wc){
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
         try {

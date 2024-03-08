@@ -17,7 +17,6 @@ public class CustomerDAO {
     }
 
     public void createCustomer(Customer customer){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
@@ -34,7 +33,6 @@ public class CustomerDAO {
     }
 
     public Customer getCustomerById(int id){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
@@ -45,7 +43,6 @@ public class CustomerDAO {
     }
 
     public List<Customer> getAllCustomers(){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
@@ -54,7 +51,6 @@ public class CustomerDAO {
     }
 
     public void updateCustomer(Customer customer){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
@@ -70,7 +66,6 @@ public class CustomerDAO {
     }
 
     public void deleteCustomer(Customer customer){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{

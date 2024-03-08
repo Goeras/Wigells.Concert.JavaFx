@@ -19,7 +19,6 @@ public class ArenaDAO {
 
     public void createArena(Arena arena)
     {
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -40,7 +39,6 @@ public class ArenaDAO {
 
     public Arena readArena(int arenaId)
     {
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -60,7 +58,6 @@ public class ArenaDAO {
     }
 
     public List<Arena> readAllArenas(){
-        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
@@ -70,7 +67,6 @@ public class ArenaDAO {
 
     public void updateArena(Arena arena)
     {
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -87,7 +83,6 @@ public class ArenaDAO {
 
     public void deleteArena(int arenaId)
     {
-        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
