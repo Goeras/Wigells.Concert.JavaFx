@@ -10,9 +10,15 @@ import java.util.List;
 
 public class ConcertDAO {
 
+    private SessionFactory sessionFactory;
+
+    public ConcertDAO(){
+        this.sessionFactory = DatabaseSessionFactory.getSessionFactory();
+    }
+
     public void createConcert(Concert concert){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
 
         try {
@@ -28,8 +34,8 @@ public class ConcertDAO {
     }
 
     public Concert readConcert(int id){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
 
         Concert concert = s.get(Concert.class, id);
@@ -39,8 +45,8 @@ public class ConcertDAO {
     }
 
     public List<Concert> readAllConcerts(){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
 
         List<Concert> concerts = s.createQuery("FROM Concert", Concert.class).list();
@@ -48,8 +54,8 @@ public class ConcertDAO {
     }
 
     public void updateConcert(Concert concert){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
             s.merge(concert);
@@ -64,8 +70,8 @@ public class ConcertDAO {
     }
 
     public void deleteConcert(Concert concert){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
             s.remove(concert);

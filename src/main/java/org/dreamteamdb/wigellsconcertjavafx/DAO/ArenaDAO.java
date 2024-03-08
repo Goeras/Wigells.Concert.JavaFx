@@ -11,9 +11,15 @@ import java.util.List;
 
 public class ArenaDAO {
 
+    private SessionFactory sessionFactory;
+
+    public ArenaDAO(){
+        this.sessionFactory = DatabaseSessionFactory.getSessionFactory();
+    }
+
     public void createArena(Arena arena)
     {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -34,7 +40,7 @@ public class ArenaDAO {
 
     public Arena readArena(int arenaId)
     {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -53,24 +59,24 @@ public class ArenaDAO {
         }
     }
 
-    public List<Concert> readAllArenas(){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+    public List<Arena> readAllArenas(){
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
 
-        List<Concert> concerts = s.createQuery("FROM Concert", Concert.class).list();
-        return concerts;
+        List<Arena> arenas = s.createQuery("FROM Arena", Arena.class).list();
+        return arenas;
     }
 
-    public void updateArena(Arena arenaToUpdate)
+    public void updateArena(Arena arena)
     {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         try
         {
-            session.update(arenaToUpdate);
+            session.merge(arena);
             session.getTransaction().commit();
         }
         catch (HibernateException E)
@@ -79,9 +85,9 @@ public class ArenaDAO {
         }
     }
 
-    public static void deleteArena(int arenaId)
+    public void deleteArena(int arenaId)
     {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -91,7 +97,7 @@ public class ArenaDAO {
         {
             if(arenaToDelete != null)
             {
-                session.delete(arenaToDelete);
+                session.remove(arenaToDelete);
                 session.getTransaction().commit();
                 System.out.println("Arena med id: " + arenaId + " har tagits bort.");
             }

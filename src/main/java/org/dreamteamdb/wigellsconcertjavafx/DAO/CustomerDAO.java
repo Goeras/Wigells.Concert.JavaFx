@@ -10,9 +10,15 @@ import java.util.List;
 
 public class CustomerDAO {
 
+    private SessionFactory sessionFactory;
+
+    public CustomerDAO(){
+        this.sessionFactory = DatabaseSessionFactory.getSessionFactory();
+    }
+
     public void createCustomer(Customer customer){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
 
         try {
@@ -28,8 +34,8 @@ public class CustomerDAO {
     }
 
     public Customer getCustomerById(int id){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
 
         Customer customer = s.get(Customer.class, id);
@@ -39,8 +45,8 @@ public class CustomerDAO {
     }
 
     public List<Customer> getAllCustomers(){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
 
         List<Customer> customers = s.createQuery("FROM Customer", Customer.class).list();
@@ -48,8 +54,8 @@ public class CustomerDAO {
     }
 
     public void updateCustomer(Customer customer){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
             s.merge(customer);
@@ -64,8 +70,8 @@ public class CustomerDAO {
     }
 
     public void deleteCustomer(Customer customer){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
+        //SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
             s.remove(customer);
