@@ -29,7 +29,7 @@ public class Concert {
     private double ticketPrice;
 
     @ManyToOne
-    @Column(name = "arena_id")
+    @JoinColumn(name = "arena_id")
     private Arena arena;
 
     @Column(name = "age_limit")

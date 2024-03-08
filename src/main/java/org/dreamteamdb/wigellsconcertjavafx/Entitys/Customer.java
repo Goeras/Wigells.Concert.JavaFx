@@ -32,8 +32,7 @@ public class Customer {
     private int phoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @Column(name = "address_id")
-    @JoinColumn(name = "address")
+    @JoinColumn(name = "id")
     private Address address;    // Kolla video hur denna ska vara.
 
     @ManyToMany(cascade = CascadeType.ALL)
