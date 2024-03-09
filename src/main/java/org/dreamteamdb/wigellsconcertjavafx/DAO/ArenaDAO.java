@@ -1,11 +1,9 @@
 package org.dreamteamdb.wigellsconcertjavafx.DAO;
 
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena;
-import org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 

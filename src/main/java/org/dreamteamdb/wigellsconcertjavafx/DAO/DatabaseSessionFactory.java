@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 // Lazy Singletonklass för att skapa EN SessionsFactory som kan användas i alla DAO.
 public class DatabaseSessionFactory {
 
-    private static volatile SessionFactory sessionFactory; // = buildSessionFactory();
+    private static volatile SessionFactory sessionFactory;
     private DatabaseSessionFactory() {}
 
     // Metod för att hämta Sessionfactory
