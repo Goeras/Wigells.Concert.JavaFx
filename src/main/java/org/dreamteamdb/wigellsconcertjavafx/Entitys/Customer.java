@@ -16,13 +16,13 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "customer_id")
     private int id;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", length = 45)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", length = 45)
     private String lastName;
 
     @Column(name = "birth_date")
@@ -31,12 +31,12 @@ public class Customer {
     @Column(name = "phone_nbr")
     private int phoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private Address address;    // Kolla video hur denna ska vara.
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "wc",
+    @JoinTable(name = "concert_customer",
     joinColumns = {@JoinColumn(name = "customer_id")},
     inverseJoinColumns = {@JoinColumn(name = "concert_id")})
     private List<Concert> concertList = new ArrayList<>();

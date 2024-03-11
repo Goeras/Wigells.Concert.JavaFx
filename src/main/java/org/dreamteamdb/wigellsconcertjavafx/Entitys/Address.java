@@ -13,6 +13,7 @@ import java.util.List;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "address_id")
     public int id;
     @Column(name = "street", length = 45)
     private String street;

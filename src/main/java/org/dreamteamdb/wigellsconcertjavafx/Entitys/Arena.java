@@ -9,11 +9,16 @@ import org.hibernate.cfg.Configuration;
 public class Arena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "arena_id")
     private int id;
+
+    @Column(name = "name", length = 45)
     private String name;
+
+    @Column(name = "inside")
     private boolean inside;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 

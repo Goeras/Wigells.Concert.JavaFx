@@ -16,10 +16,10 @@ public class Concert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int Id;
+    @Column(name = "concert_id")
+    private int id;
 
-    @Column(name = "artist_name")
+    @Column(name = "artist_name", length = 45)
     private String artistName;
 
     @Column(name = "date")
@@ -28,15 +28,15 @@ public class Concert {
     @Column(name = "ticket_price")
     private double ticketPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "arena_id")
-    private Arena arena;
-
     @Column(name = "age_limit")
     private int ageLimit;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "arena_id")
+    private Arena arena;
+
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "wc",
+    @JoinTable(name = "concert_customer",
     joinColumns = {@JoinColumn(name = "concert_id")},
     inverseJoinColumns = {@JoinColumn(name = "customer_id")})
     private List<Customer> customerList = new ArrayList<>();
@@ -117,11 +117,11 @@ public class Concert {
     // Getters & Setters
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        id = id;
     }
 
     public String getArtistName() {
