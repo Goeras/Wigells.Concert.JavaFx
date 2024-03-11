@@ -46,6 +46,7 @@ public class ConcertDAO {
         s.beginTransaction();
 
         List<Concert> concerts = s.createQuery("FROM Concert", Concert.class).list();
+        s.close();
         return concerts;
     }
 
