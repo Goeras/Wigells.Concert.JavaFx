@@ -46,6 +46,7 @@ public class CustomerDAO {
         s.beginTransaction();
 
         List<Customer> customers = s.createQuery("FROM Customer", Customer.class).list();
+        s.close();
         return customers;
     }
 

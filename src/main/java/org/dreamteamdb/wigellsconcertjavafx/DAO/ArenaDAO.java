@@ -60,6 +60,7 @@ public class ArenaDAO {
         s.beginTransaction();
 
         List<Arena> arenas = s.createQuery("FROM Arena", Arena.class).list();
+        s.close();
         return arenas;
     }
 
@@ -76,6 +77,9 @@ public class ArenaDAO {
         catch (HibernateException E)
         {
             E.printStackTrace();
+        }
+        finally {
+            session.close();
         }
     }
 
@@ -102,6 +106,9 @@ public class ArenaDAO {
         catch(HibernateException E)
         {
             E.printStackTrace();
+        }
+        finally {
+            session.close();
         }
     }
 }
