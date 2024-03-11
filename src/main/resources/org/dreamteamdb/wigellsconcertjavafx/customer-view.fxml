@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.CustomerController"
+            prefHeight="400.0" prefWidth="600.0">
+<VBox spacing="10">
+    <Label fx:id="name" text="Namn"/>
+    <Label fx:id="address" text="Gata"/>
+    <Label fx:id="postAddress" text="Postkod"/>
+    <Label fx:id="birthdate" text="födelsedatum"/>
+    <Button fx:id="change" text="Ändra info" onAction="#onChangeInfoClick"/>
+    <TableView fx:id="yourTickets" maxHeight="200">
+        <columns>
+            <TableColumn fx:id="yourDate" text="Datum"/>
+            <TableColumn fx:id="yourArtist" text="Artist"/>
+            <TableColumn fx:id="yourArena" text="Arena"/>
+            <TableColumn fx:id="yourIndoor" text="Inomhus"/>
+            <TableColumn fx:id="yourPrice" text="Pris"/>
+            <TableColumn fx:id="yourMinAge" text="Åldersgräns"/>
+        </columns>
+    </TableView>
+    <TableView fx:id= "upcomingTickets" maxHeight="200">
+        <columns>
+            <TableColumn fx:id="upcomingDate" text="Datum"/>
+            <TableColumn fx:id="upcomingArtist" text="Artist"/>
+            <TableColumn fx:id="upcomingArena" text="Arena"/>
+            <TableColumn fx:id="upcomingIndoor" text="Inomhus"/>
+            <TableColumn fx:id="upcomingPrice" text="Pris"/>
+            <TableColumn fx:id="upcomingMinAge" text="Åldersgräns"/>
+        </columns>
+    </TableView>
+    <Button fx:id="buyTicket" text="Köp Biljetter" onAction="#onBuyTicketsClick"/>
+    <Button fx:id="logout" text="Logga ut" onAction="#onLogoutButtonClick"/>
+</VBox>
+</AnchorPane>

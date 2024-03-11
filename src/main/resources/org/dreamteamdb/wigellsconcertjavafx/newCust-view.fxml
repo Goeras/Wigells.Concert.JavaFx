@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.NewCustController"
+            prefHeight="400.0" prefWidth="600.0">
+<VBox>
+    <Label text="TOPLABEL"/>
+    <HBox>
+        <Label text="Förnamn"/>
+        <TextField fx:id="firstName"/>
+        <Label text="Efternamn"/>
+        <TextField fx:id="lastName"/>
+    </HBox>
+    <HBox>
+        <Label text="Gatuadress"/>
+        <TextField fx:id="street"/>
+        <Label text="Gatnummer"/>
+        <TextField fx:id="housenumber"/>
+    </HBox>
+    <HBox>
+        <Label text="Postkod"/>
+        <TextField fx:id="postalcode"/>
+        <Label text="Stad"/>
+        <TextField fx:id="city"/>
+    </HBox>
+    <HBox>
+        <Label text="Födelseår (ÅÅÅÅ-mm-dd"/>
+        <TextField fx:id="birthday"/>
+    </HBox>
+    <HBox>
+        <Label text="Lösenord"/>
+        <TextField fx:id="passWord"/>
+    </HBox>
+    <Button fx:id="saveCust" text="Spara kund" onAction="#onSaveButtonClick"/>
+    <Button fx:id="back" text="Tillbaka" onAction="#onBackButton"/>
+
+
+
+</VBox>
+</AnchorPane>

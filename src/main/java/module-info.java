@@ -26,4 +26,6 @@ module org.dreamteamdb.wigellsconcertjavafx {
     opens org.dreamteamdb.wigellsconcertjavafx.Entitys;
     exports org.dreamteamdb.wigellsconcertjavafx.Entitys;
     opens org.dreamteamdb.wigellsconcertjavafx;
+    exports org.dreamteamdb.wigellsconcertjavafx.Controllers;
+    opens org.dreamteamdb.wigellsconcertjavafx.Controllers;
 }

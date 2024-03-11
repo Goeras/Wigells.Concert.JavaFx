@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.AdminViewController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox>
+        <TableView fx:id= "upComingConcerts" maxHeight="200">
+            <columns>
+                <TableColumn fx:id="upcomingDate" text="Datum"/>
+                <TableColumn fx:id="upcomingArtist" text="Artist"/>
+                <TableColumn fx:id="upcomingArena" text="Arena"/>
+                <TableColumn fx:id="upcomingIndoor" text="Inomhus"/>
+                <TableColumn fx:id="upcomingPrice" text="Pris"/>
+                <TableColumn fx:id="upcomingMinAge" text="Åldersgräns"/>
+            </columns>
+        </TableView>
+        <TableView fx:id="concertCustomers" visible="false">
+            <columns>
+                <TableColumn fx:id="id"/>
+                <TableColumn fx:id="firstName"/>
+                <TableColumn fx:id="lastName"/>
+                <TableColumn fx:id="adressId"/>
+                <TableColumn fx:id="birthdate"/>
+                <TableColumn fx:id="phoneNr"/>
+            </columns>
+        </TableView>
+        <Button fx:id="seeConcertCustomers" text="Se kundlista för markerad konsert" onAction="#onSeeCustButton"/>
+        <Button text="Ny konsert"/>
+        <Button text="Ta bort markerad konsert"/>
+        <Button text="Uppdatera markerad konsert"/>
+        <Button text="Logga ut"/>
+
+    </VBox>
+</AnchorPane>
