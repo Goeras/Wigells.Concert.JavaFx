@@ -3,13 +3,15 @@ package org.dreamteamdb.wigellsconcertjavafx.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import org.dreamteamdb.wigellsconcertjavafx.Entitys.Address;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Customer;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class AdminViewController {
@@ -54,11 +56,53 @@ public class AdminViewController {
     private TableColumn<Arena, String> arenaIndoor;
     @FXML
     private VBox newConcert;
-
-    public AdminViewController(){}
+    @FXML
+    private VBox updateConcert;
+    @FXML
+    private VBox newArena;
+    @FXML
+    private VBox updateArena;
+    @FXML
+    private TextField updateName;
+    @FXML
+    private TextField updateStreet;
+    @FXML
+    private TextField updateHouse;
+    @FXML
+    private TextField updatePostal;
+    @FXML
+    private TextField updateCity;
+    @FXML
+    private CheckBox indoorcheck;
+    @FXML
+    private TextField newArenaName;
+    @FXML
+    private TextField newArenaStreet;
+    @FXML
+    private TextField newArenaHouse;
+    @FXML
+    private TextField newArenaPostal;
+    @FXML
+    private TextField newArenaCity;
+    @FXML
+    private CheckBox indoorCheckBox;
+    @FXML
+    private TextField newConcertArtist;
+    @FXML
+    private TextField newConcertArenaId;
+    @FXML
+    private TextField newConcertDate;
+    @FXML
+    private TextField newConcertPrice;
+    @FXML
+    private TextField newConcertAge;
+    @FXML
+    ViewManager viewManager = new ViewManager();
+    @FXML
+    ChoiceBox<Arena> arenaChoiceBox;
 
     public void initialize() {
-        ViewManager viewManager = new ViewManager();
+        viewManager = new ViewManager();
         upcomingConcertList = viewManager.upcomingConcerts();
 
         upcomingArtist.setCellValueFactory(new PropertyValueFactory<>("artistName"));
@@ -94,10 +138,7 @@ public class AdminViewController {
     @FXML
     public void onSeeCustButton() {
       Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
-      ViewManager viewManager = new ViewManager();
       List<Customer> customerList = viewManager.concertDAO.readConcert(concert.getId()).getCustomerList();
-
-
         ObservableList customers = FXCollections.observableList(customerList);
         concertCustomers.setItems(customers);
         if (!concertCustomers.isVisible()) {
@@ -110,6 +151,108 @@ public class AdminViewController {
         if(!newConcert.isManaged()){
             newConcert.setManaged(true);
             newConcert.setVisible(true);
+        }
+        List<Arena> arenasList = viewManager.arenaDAO.readAllArenas();
+        ObservableList observableList = FXCollections.observableList(arenasList);
+        arenaChoiceBox.setItems(observableList);
+    }
+    @FXML
+    public  void onSaveConcertButton(){
+        Concert concert = new Concert();
+        Arena arena = arenaChoiceBox.getValue();
+        concert.setArtistName(newConcertArtist.getText());
+        concert.setDate(LocalDate.parse(newConcertDate.getText()));
+        concert.setAgeLimit(Integer.parseInt(newConcertAge.getText()));
+        concert.setTicketPrice(Double.parseDouble(newConcertPrice.getText()));
+
+        viewManager.concertDAO.createConcert2(concert, arena.getId());
+
+        if(newConcert.isManaged()){
+            newConcert.setManaged(false);
+            newConcert.setVisible(false);
+        }
+    }
+    @FXML
+    public void onUpdateConcertButton(){
+        if(!updateConcert.isManaged()){
+            updateConcert.setManaged(true);
+            updateConcert.setVisible(true);
+        }
+    }
+    @FXML
+    public void onSaveUpdateConcert(){
+        if(updateConcert.isManaged()){
+            updateConcert.setVisible(false);
+            updateConcert.setManaged(false);
+        }
+    }
+    @FXML
+    public void onNewArenaButton(){
+        if(!newArena.isManaged()){
+            newArena.setManaged(true);
+            newArena.setVisible(true);
+        }
+    }
+    @FXML
+    public void onSaveNewArena(){
+        Arena arena = new Arena();
+        Address address = new Address();
+        address.setStreet(newArenaStreet.getText());
+        address.setHouseNo(Integer.parseInt(newArenaHouse.getText()));
+        address.setPostalCode(Integer.parseInt(newArenaPostal.getText()));
+        address.setCity(newArenaCity.getText());
+
+        arena.setName(newArenaName.getText());
+        arena.setAddress(address);
+        arena.setInside(indoorCheckBox.isSelected());
+
+
+        viewManager.arenaDAO.createArena(arena);
+
+        if(newArena.isManaged()){
+            newArena.setManaged(false);
+            newArena.setVisible(false);
+        }
+
+    }
+    @FXML
+    public void onUpdateArenaButton(){
+        Arena arena = arenas.getSelectionModel().getSelectedItem();
+        if(arena != null){
+            updateName.setText(arena.getName());
+            updateStreet.setText(arena.getAddress().getStreet());
+            updateHouse.setText(Integer.toString(arena.getAddress().getHouseNo()));
+            updatePostal.setText(Integer.toString(arena.getAddress().getPostalCode()));
+            updateCity.setText(arena.getAddress().getCity());
+            if(arena.isInside()){
+                indoorcheck.setSelected(true);
+            }
+            else {
+                indoorcheck.setSelected(false);
+            }
+        }
+        if(!updateArena.isManaged()){
+            updateArena.setManaged(true);
+            updateArena.setVisible(true);
+        }
+
+    }
+    @FXML
+    public void onSaveUpdateArenaButton(){
+        Arena arena = arenas.getSelectionModel().getSelectedItem();
+        arena.setName(updateName.getText());
+        arena.getAddress().setStreet(updateStreet.getText());
+        arena.getAddress().setHouseNo(Integer.parseInt(updateHouse.getText()));
+        arena.getAddress().setPostalCode(Integer.parseInt(updatePostal.getText()));
+        arena.getAddress().setCity(updateCity.getText());
+        arena.setInside(indoorcheck.isSelected());
+
+
+        viewManager.arenaDAO.updateArena(arena);
+
+        if(updateArena.isManaged()){
+            updateArena.setVisible(false);
+            updateArena.setManaged(false);
         }
     }
 }

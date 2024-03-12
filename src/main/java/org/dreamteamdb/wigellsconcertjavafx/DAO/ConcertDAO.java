@@ -1,5 +1,6 @@
 package org.dreamteamdb.wigellsconcertjavafx.DAO;
 
+import org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -32,10 +33,11 @@ public class ConcertDAO {
     }
 
     public Concert readConcert(int id){
+        Concert concert = new Concert();
         Session s = sessionFactory.openSession();
         s.beginTransaction();
 
-        Concert concert = s.get(Concert.class, id);
+        concert = s.get(Concert.class, id);
         s.close();
 
         return concert;
@@ -78,5 +80,22 @@ public class ConcertDAO {
             s.close();
         }
     }
+    public void createConcert2(Concert concert, int id){
+        ArenaDAO arenaDAO = new ArenaDAO();
 
+        Session s = sessionFactory.openSession();
+        s.beginTransaction();
+        try {
+            Arena arena = s.get(Arena.class, id);
+            concert.setArena(arena);
+            s.persist(concert);
+            s.getTransaction().commit();
+        }
+        catch(HibernateException he){
+            he.printStackTrace();
+        }
+        finally{
+            s.close();
+        }
+    }
 }

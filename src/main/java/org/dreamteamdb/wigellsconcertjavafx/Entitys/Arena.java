@@ -62,6 +62,9 @@ public class Arena {
     public void setAddress(Address address) {
         this.address = address;
     }
+    public String toString(){
+        return name;
+    }
 
 
 }

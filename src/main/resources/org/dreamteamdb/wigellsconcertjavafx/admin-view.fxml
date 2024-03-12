@@ -27,7 +27,7 @@
                 <Button fx:id="seeConcertCustomers" text="Se kundlista för markerad konsert" onAction="#onSeeCustButton"/>
                 <Button text="Ny konsert" onAction="#onNewConcertButton"/>
                 <Button text="Ta bort markerad konsert"/>
-                <Button text="Uppdatera markerad konsert"/>
+                <Button text="Uppdatera markerad konsert" onAction="#onUpdateConcertButton"/>
             </VBox>
         </HBox>
 
@@ -41,6 +41,22 @@
                 <TableColumn fx:id="phoneNr" text="Telefonnummer"/>
             </columns>
         </TableView>
+        <VBox fx:id="newConcert" managed="false" visible="false">
+            <TextField fx:id="newConcertArtist" promptText="Artist" maxWidth="150"/>
+            <TextField fx:id="newConcertAge" promptText="Åldersgräns" maxWidth="150"/>
+            <TextField fx:id="newConcertPrice" promptText="Biljettpris" maxWidth="150"/>
+            <TextField fx:id="newConcertDate" promptText="Datum" maxWidth="150"/>
+            <ChoiceBox fx:id="arenaChoiceBox"/>
+            <Button fx:id="saveConcert" text="Spara ny konsert" onAction="#onSaveConcertButton"/>
+        </VBox>
+        <VBox fx:id="updateConcert" managed="false" visible="false">
+            <TextField fx:id="updateConcertArtist" promptText="Artist" maxWidth="150"/>
+            <TextField fx:id="updateConcertArena" promptText="ArenaId" maxWidth="150"/>
+            <TextField fx:id="updateConcertPrice" promptText="Biljettpris" maxWidth="150"/>
+            <TextField fx:id="updateConcertAge" promptText="Åldersgräns" maxWidth="150"/>
+            <TextField fx:id="updateConcertDate" promptText="Datum" maxWidth="150"/>
+            <Button text="Uppdatera konsert" onAction="#onSaveUpdateConcert"/>
+        </VBox>
     </VBox>
         <HBox>
             <TableView fx:id="arenas" prefWidth="500" prefHeight="200">
@@ -52,9 +68,9 @@
                 </columns>
             </TableView>
             <VBox>
-                <Button text="Uppdatera Arena"/>
+                <Button text="Uppdatera Arena" onAction="#onUpdateArenaButton"/>
                 <Button text="Ta bort arena"/>
-                <Button text="Ny arena"/>
+                <Button text="Ny arena" onAction="#onNewArenaButton"/>
                 <Button text="Se konserter arena"/>
             </VBox>
         </HBox>
@@ -66,29 +82,25 @@
                 <TableColumn fx:id="price"/>
             </columns>
         </TableView>
-        <VBox fx:id="newConcert" managed="false" visible="false">
-            <TextField/>
-            <TextField/>
-            <TextField/>
-            <TextField/>
-        </VBox>
+
         <VBox fx:id="newArena" managed="false" visible="false">
-        <TextField/>
-        <TextField/>
-        <TextField/>
-        <TextField/>
+            <TextField fx:id="newArenaName" promptText="Namn"/>
+            <TextField fx:id="newArenaStreet" promptText="Gata"/>
+            <TextField fx:id="newArenaHouse" promptText="Husnummer"/>
+            <TextField fx:id="newArenaPostal" promptText="Postkod"/>
+            <TextField fx:id="newArenaCity" promptText="Stad"/>
+            <CheckBox fx:id="indoorCheckBox" text="Indoor"/>
+            <Button text="Spara" onAction="#onSaveNewArena"/>
         </VBox>
-        <VBox fx:id="updateConcert" managed="false" visible="false">
-            <TextField/>
-            <TextField/>
-            <TextField/>
-            <TextField/>
-        </VBox>
+
         <VBox fx:id="updateArena" managed="false" visible="false">
-            <TextField/>
-            <TextField/>
-            <TextField/>
-            <TextField/>
+            <TextField fx:id="updateName"/>
+            <TextField fx:id="updateStreet"/>
+            <TextField fx:id="updateHouse"/>
+            <TextField fx:id="updatePostal"/>
+            <TextField fx:id="updateCity"/>
+            <CheckBox fx:id="indoorcheck" text="Indoor"/>
+            <Button text="Soara" onAction="#onSaveUpdateArenaButton"/>
         </VBox>
         <Button text="Logga ut"/>
     </VBox>
