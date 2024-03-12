@@ -48,83 +48,22 @@ public class Customer {
     public Customer() {
     }
 
-    // CRUD-operations
-    public void createConcert(Customer customer){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
-        s.beginTransaction();
-
-        try {
-            s.persist(customer);
-            s.getTransaction().commit();
-        }
-        catch(HibernateException he){
-            he.printStackTrace();
-        }
-        finally{
-            s.close();
-        }
-    }
-
-    public Customer getCustomerById(int id){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
-        s.beginTransaction();
-
-        Customer customer = s.get(Customer.class, id);
-        s.close();
-
-        return customer;
-    }
-
-    public List<Customer> getAllCustomer(){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
-        s.beginTransaction();
-
-        List<Customer> customers = s.createQuery("FROM Customer", Customer.class).list();
-        return customers;
-    }
-
-    public void updateCustomer(Customer customer){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
-        s.beginTransaction();
-        try{
-            s.merge(customer);
-            s.getTransaction().commit();
-        }
-        catch(HibernateException he){
-            he.printStackTrace();
-        }
-        finally{
-            s.close();
-        }
-    }
-
-    public void deleteCustomer(Customer customer){
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        Session s = sf.openSession();
-        s.beginTransaction();
-        try{
-            s.remove(customer);
-        }
-        catch(HibernateException he){
-            he.printStackTrace();
-        }
-        finally{
-            s.close();
-        }
-    }
-
-
     // Getters & Setters
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
