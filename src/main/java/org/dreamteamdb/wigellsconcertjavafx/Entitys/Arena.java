@@ -8,6 +8,8 @@ import org.hibernate.cfg.Configuration;
 
 @Entity
 @Table(name="arena")
+
+
 public class Arena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,7 @@ public class Arena {
     @Column(name = "inside")
     private boolean inside;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
     private Address address;
 

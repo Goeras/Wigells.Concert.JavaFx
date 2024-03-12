@@ -61,7 +61,7 @@ public class ViewManager {
 
     public ObservableList<Concert> customerTickets(int customerId){
         //OBS TEST BYT TILL INLÄSNING FRÅN DATABAS
-        Customer customer = getCustomerById(customerId);
+        Customer customer = getCustomerById(customerId); // = customerDAO.getCustomerById(customerId);
         ObservableList<Concert> observableList = FXCollections.observableList(customer.getConcertList());
         return observableList;
     }
@@ -74,8 +74,7 @@ public class ViewManager {
 
     }
     public ObservableList<Concert> upcomingConcerts(){
-        List<Concert> upcomingConcerts = new ArrayList<>();
-        //OBS TEST BYT TILL INLÄSNING FRÅN DATABAS
+        List<Concert> upcomingConcerts = concertDAO.readAllConcerts();
         upcomingConcerts.add(createTestConcert());
         ObservableList<Concert> observableList = FXCollections.observableList(upcomingConcerts);
         return observableList;

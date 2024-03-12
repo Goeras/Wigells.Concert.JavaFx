@@ -19,6 +19,9 @@ public class Customer {
     @Column(name = "customer_id")
     private int id;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "first_name", length = 45)
     private String firstName;
 
@@ -31,11 +34,11 @@ public class Customer {
     @Column(name = "phone_nbr")
     private int phoneNumber;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "concert_customer",
     joinColumns = {@JoinColumn(name = "customer_id")},
     inverseJoinColumns = {@JoinColumn(name = "concert_id")})
