@@ -7,7 +7,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.dreamteamdb.wigellsconcertjavafx.CurrentUser;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert;
+import org.dreamteamdb.wigellsconcertjavafx.Entitys.Customer;
 
 import java.io.IOException;
 
@@ -57,15 +59,21 @@ public class CustomerController {
 
 
     public void initialize(){
-        loggedIn = 0;
+        loggedIn = CurrentUser.getInstance().getCurrentUser().getId(); //0;
+        Customer customer = CurrentUser.getInstance().getCurrentUser();
         viewManager = new ViewManager();
         yourConcertList = viewManager.customerTickets(loggedIn);
         upcomingConcertList = viewManager.upcomingConcerts();
 
-        name.setText(viewManager.getCustomerFirstName(loggedIn) + " " + viewManager.getCustomerLastName(loggedIn));
+        name.setText(customer.getFirstName() + " " + customer.getLastName());
+        address.setText(customer.getAddress().getStreet() + " " + customer.getAddress().getHouseNo());
+        postAddress.setText(customer.getAddress().getPostalCode() + " " + customer.getAddress().getCity());
+        birthdate.setText(customer.getBirthDate().toString());
+
+        /*name.setText(viewManager.getCustomerFirstName(loggedIn) + " " + viewManager.getCustomerLastName(loggedIn));
         address.setText(viewManager.getStreetAdress(loggedIn) + " " + viewManager.getHouseNumber(loggedIn));
         postAddress.setText(viewManager.getPostalCode(loggedIn) + " " + viewManager.getCity(loggedIn));
-        birthdate.setText(viewManager.getCustBirthDay(loggedIn));
+        birthdate.setText(viewManager.getCustBirthDay(loggedIn));*/
 
         yourArtist.setCellValueFactory(new PropertyValueFactory<>("artistName"));
         yourArena.setCellValueFactory(cellData -> viewManager.arenaProperty(cellData.getValue().getArena()));
