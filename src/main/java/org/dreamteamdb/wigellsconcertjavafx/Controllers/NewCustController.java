@@ -24,6 +24,10 @@ public class NewCustController {
     private TextField city;
     @FXML
     private TextField birthday;
+    @FXML
+    private TextField passWord;
+    @FXML
+    private TextField phoneNumber;
 
     public void initialize(){}
     @FXML
@@ -36,9 +40,10 @@ public class NewCustController {
     public void onSaveButtonClick() throws IOException {
         LocalDate localDate = LocalDate.parse(birthday.getText());
         int housenr = Integer.parseInt(housenumber.getText());
+        int phonenr = Integer.parseInt(phoneNumber.getText());
         int postcode = Integer.parseInt(postalcode.getText());
         ViewManager viewManager = new ViewManager();
-        viewManager.newCustomer(firstName.getText(), lastName.getText(), street.getText(), housenr, postcode, city.getText(), localDate);
+        viewManager.newCustomer(firstName.getText(), lastName.getText(), phonenr, street.getText(), housenr, postcode, city.getText(), localDate, passWord.getText());
         onBackButton();
 
     }

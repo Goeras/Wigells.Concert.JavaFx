@@ -27,7 +27,6 @@ public class ViewManager {
     ConcertDAO concertDAO = new ConcertDAO();
     ArenaDAO arenaDAO = new ArenaDAO();
     AddressDAO addressDAO = new AddressDAO();
-
     AdminDAO adminDAO = new AdminDAO();
 
 
@@ -170,10 +169,10 @@ public class ViewManager {
     }
 
 
-    public void customerLogIn(int id, String password){
+    public void customerLogIn(int phoneNumber, String password){
         List<Customer> customerList = customerDAO.getAllCustomers();
         for(Customer customer : customerList){
-            if(customer.getId() == id && customer.getPassword().equals(password)){
+            if(customer.getPhoneNumber() == phoneNumber && customer.getPassword().equals(password)){
                 CurrentUser.getInstance().setCurrentCustomer(customer);
             }
         }
@@ -270,7 +269,7 @@ public class ViewManager {
     public void getNewInfo(String firstName, String lastName, String street, int housenumber, int postalCode, String city, int id){
         //BYT TILL UPDATE METOD
     }
-    public void newCustomer(String firstName, String lastName, String street, int housenumber, int postalCode, String city, LocalDate localDate/*, String password*/){
+    public void newCustomer(String firstName, String lastName, int phoneNumber, String street, int housenumber, int postalCode, String city, LocalDate localDate, String password){
         Address address = new Address();
         address.setStreet(street);
         address.setHouseNo(housenumber);
@@ -282,9 +281,10 @@ public class ViewManager {
         customer.setLastName(lastName);
         customer.setAddress(address);
         customer.setBirthDate(localDate);
-        /*customer.setPassword(password);*/
+        customer.setPassword(password);
+        customer.setPhoneNumber(phoneNumber);
 
-        /*customerDAO.createCustomer(customer);*/     //SPARA KUND TILL DATABAS
+        customerDAO.createCustomer(customer);
     }
     //LADDA NYA SIDOR
     public void loadCustomerPage(Stage stage) throws IOException {

@@ -10,7 +10,7 @@ public class CurrentUser {
 
     private CurrentUser(){}
 
-    public static CurrentUser getInstance(){
+    public static synchronized CurrentUser getInstance(){
         if(instance == null){
             instance = new CurrentUser();
         }

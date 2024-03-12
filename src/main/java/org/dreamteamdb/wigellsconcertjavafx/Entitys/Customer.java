@@ -117,4 +117,15 @@ public class Customer {
     public void addConcertToList(Concert concert){
         this.concertList.add(concert);
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", phoneNumber=" + phoneNumber +
+                '}';
+    }
 }

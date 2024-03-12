@@ -11,7 +11,7 @@
             fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.NewCustController"
             prefHeight="400.0" prefWidth="600.0">
 <VBox>
-    <Label text="TOPLABEL"/>
+    <Label text="Fyll i alla nedanstående fält"/>
     <HBox>
         <Label text="Förnamn"/>
         <TextField fx:id="firstName"/>
@@ -33,6 +33,10 @@
     <HBox>
         <Label text="Födelseår (ÅÅÅÅ-mm-dd"/>
         <TextField fx:id="birthday"/>
+    </HBox>
+    <HBox>
+        <Label text="Telefonnummer"/>
+        <TextField fx:id="phoneNumber"/>
     </HBox>
     <HBox>
         <Label text="Lösenord"/>
