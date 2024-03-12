@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.dreamteamdb.wigellsconcertjavafx.CurrentUser;
 import org.dreamteamdb.wigellsconcertjavafx.DAO.*;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.*;
 import org.dreamteamdb.wigellsconcertjavafx.HelloApplication;
@@ -169,25 +170,24 @@ public class ViewManager {
     }
 
 
-    /*public Customer customerLogIn(int id, String password){
+    public void customerLogIn(int id, String password){
         List<Customer> customerList = customerDAO.getAllCustomers();
         for(Customer customer : customerList){
-            if(customer.getId() == id && customer.getPassword.equals(password)){
-                return customer;
+            if(customer.getId() == id && customer.getPassword().equals(password)){
+                CurrentUser.getInstance().setCurrentCustomer(customer);
             }
         }
-        return null;
-    }*/
+    }
 
-    /*public Admin adminLogIn(int id, String password){
-        List<Admin> adminList = adminDAO.getAllAdmins();
+    public boolean adminLogIn(int id, String password){
+        List<Admin> adminList = adminDAO.readAllAdmins();
         for(Admin admin : adminList){
-            if(admin.getId() == id && admin.getPassword.equals(password)){
-                return admin;
+            if(admin.getId() == id && admin.getPassword().equals(password)){
+                return true;
             }
         }
-        return null;
-    }*/
+        return false;
+    }
 
     public void deleteCustomer(int id){
         Customer customer = customerDAO.getCustomerById(id);
@@ -209,13 +209,13 @@ public class ViewManager {
         adminDAO.deleteAdmin(admin);
     }
 
-    /*public void newAdmin(String name, String password){
+    public void newAdmin(String firstName, String lastName, String password){
         Admin admin = new Admin();
-        admin.setName(name);
+        admin.setFirstName(firstName);
+        admin.setLastName(lastName);
         admin.setPassword(password);
         adminDAO.createAdmin(admin);
-
-    }*/
+    }
 
     public void newConcert(String artistName, LocalDate date, double ticketPrice, Arena arena, int ageLimit){
         Concert concert =  new Concert();
