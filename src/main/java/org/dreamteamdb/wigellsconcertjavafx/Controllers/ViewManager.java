@@ -126,6 +126,18 @@ public class ViewManager {
         Customer customer = getCustomerById(id);
         return customer.getBirthDate().toString();
     }
+    public SimpleStringProperty getCustomerFullName(int id){
+        Customer customer = getCustomerById(id);
+        return new SimpleStringProperty(customer.getFirstName() + " " + customer.getLastName());
+    }
+    public SimpleStringProperty getCustomerBirth(int id){
+        Customer customer = getCustomerById(id);
+        return new SimpleStringProperty(customer.getBirthDate().toString());
+    }
+    public SimpleStringProperty getCustomerPhone(int id){
+        Customer customer = getCustomerById(id);
+        return new SimpleStringProperty(Integer.toString(customer.getPhoneNumber()));
+    }
     //OBS BYT TILL INLÄSNING DETTA ÄR BARA TEST
     public Customer getCustomerById(int id){
         Customer customer = new Customer();
