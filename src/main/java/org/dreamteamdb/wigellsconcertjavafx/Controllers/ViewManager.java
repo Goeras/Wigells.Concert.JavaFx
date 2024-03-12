@@ -169,13 +169,15 @@ public class ViewManager {
     }
 
 
-    public void customerLogIn(int phoneNumber, String password){
+    public boolean customerLogIn(int phoneNumber, String password){
         List<Customer> customerList = customerDAO.getAllCustomers();
         for(Customer customer : customerList){
             if(customer.getPhoneNumber() == phoneNumber && customer.getPassword().equals(password)){
                 CurrentUser.getInstance().setCurrentCustomer(customer);
+                return true;
             }
         }
+        return false;
     }
 
     public boolean adminLogIn(int id, String password){
