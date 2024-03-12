@@ -69,64 +69,6 @@ public class Address {
     public void setCity(String city) {
         this.city = city;
     }
-    public void create(Session session) {
 
-
-        try {
-            session.beginTransaction();
-            session.persist(this);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            if (session.getTransaction() != null && session.getTransaction().isActive()) {
-                session.getTransaction().rollback();
-            }
-        }
-    }
-
-    public static Address read(Session session, int id){
-        Address address = new Address();
-        try{
-            session.beginTransaction();
-            address = session.get(Address.class, id);
-            session.getTransaction().commit();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            if(session.getTransaction() != null){
-                session.getTransaction().rollback();
-            }
-        }
-        return address;
-    }
-    public static List<Address> readList(Session session, List<Address> addresses, String queryString){
-        try{
-            session.beginTransaction();
-            Query<Address> query = session.createQuery(queryString, Address.class);
-            addresses = query.list();
-            session.getTransaction().commit();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return addresses;
-    }
-
-    public void update(Session session){
-        session.beginTransaction();
-        session.merge(this);
-        session.getTransaction().commit();
-    }
-
-    public void delete(Session session, Address address){
-        try {
-            session.beginTransaction();
-            session.remove(address);
-            session.getTransaction().commit();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        }
-    }
 }
 
