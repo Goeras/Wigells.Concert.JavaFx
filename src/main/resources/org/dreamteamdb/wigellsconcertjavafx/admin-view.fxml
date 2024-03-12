@@ -13,53 +13,50 @@
 <VBox>
     <VBox>
         <HBox>
-        <TableView fx:id= "upComingConcerts" maxHeight="200">
-            <columns>
-                <TableColumn fx:id="upcomingDate" text="Datum"/>
-                <TableColumn fx:id="upcomingArtist" text="Artist"/>
-                <TableColumn fx:id="upcomingArena" text="Arena"/>
-                <TableColumn fx:id="upcomingIndoor" text="Inomhus"/>
-                <TableColumn fx:id="upcomingPrice" text="Pris"/>
-                <TableColumn fx:id="upcomingMinAge" text="Åldersgräns"/>
-            </columns>
-        </TableView>
+            <TableView fx:id= "upComingConcerts" prefHeight="200" prefWidth="500">
+                <columns>
+                    <TableColumn fx:id="upcomingDate" text="Datum"/>
+                    <TableColumn fx:id="upcomingArtist" text="Artist"/>
+                    <TableColumn fx:id="upcomingArena" text="Arena"/>
+                    <TableColumn fx:id="upcomingIndoor" text="Inomhus"/>
+                    <TableColumn fx:id="upcomingPrice" text="Pris"/>
+                    <TableColumn fx:id="upcomingMinAge" text="Åldersgräns"/>
+                </columns>
+            </TableView>
             <VBox>
                 <Button fx:id="seeConcertCustomers" text="Se kundlista för markerad konsert" onAction="#onSeeCustButton"/>
-                <Button text="Ny konsert"/>
+                <Button text="Ny konsert" onAction="#onNewConcertButton"/>
                 <Button text="Ta bort markerad konsert"/>
                 <Button text="Uppdatera markerad konsert"/>
             </VBox>
+        </HBox>
 
-
-    </HBox>
         <TableView fx:id="concertCustomers" managed="false" visible="false">
             <columns>
-                <TableColumn fx:id="id"/>
-                <TableColumn fx:id="name"/>
-                <TableColumn fx:id="streetAddress"/>
-                <TableColumn fx:id="postAddress"/>
-                <TableColumn fx:id="birthdate"/>
-                <TableColumn fx:id="phoneNr"/>
+                <TableColumn fx:id="id" text="KundId"/>
+                <TableColumn fx:id="name" text="Namn"/>
+                <TableColumn fx:id="streetAddress" text="Gata"/>
+                <TableColumn fx:id="postAddress" text="Postadress"/>
+                <TableColumn fx:id="birthdate" text="Födelsedatum"/>
+                <TableColumn fx:id="phoneNr" text="Telefonnummer"/>
             </columns>
         </TableView>
     </VBox>
-    <VBox>
         <HBox>
-        <TableView fx:id="Arenas">
-            <columns>
-                <TableColumn fx:id="arenaName"/>
-                <TableColumn fx:id="arenaStreet"/>
-                <TableColumn fx:id="arenaPost"/>
-                <TableColumn fx:id="arenaIndoor"/>
-            </columns>
-        </TableView>
+            <TableView fx:id="arenas" prefWidth="500" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="arenaName" text="Namn"/>
+                    <TableColumn fx:id="arenaStreet" text="Gata"/>
+                    <TableColumn fx:id="arenaPost" text="Postadress"/>
+                    <TableColumn fx:id="arenaIndoor" text="Inomhus"/>
+                </columns>
+            </TableView>
             <VBox>
                 <Button text="Uppdatera Arena"/>
                 <Button text="Ta bort arena"/>
                 <Button text="Ny arena"/>
                 <Button text="Se konserter arena"/>
             </VBox>
-
         </HBox>
         <TableView fx:id="concertArenas" managed="false" visible="false">
             <columns>
@@ -95,5 +92,4 @@
         </VBox>
         <Button text="Logga ut"/>
     </VBox>
-</VBox>
 </AnchorPane>
