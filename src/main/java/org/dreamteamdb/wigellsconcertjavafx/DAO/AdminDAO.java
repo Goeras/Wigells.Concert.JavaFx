@@ -1,33 +1,35 @@
 package org.dreamteamdb.wigellsconcertjavafx.DAO;
 
+import org.dreamteamdb.wigellsconcertjavafx.Entitys.Admin;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
-public class ArenaDAO {
+public class AdminDAO {
 
     private SessionFactory sessionFactory;
 
-    public ArenaDAO(){
+    public AdminDAO(){
         this.sessionFactory = DatabaseSessionFactory.getSessionFactory();
     }
 
-    public void createArena(Arena arena)
-    {
+    public void createAdmin(Admin admin){
+
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         try
         {
-            session.persist(arena);
+            session.persist(admin);
             session.getTransaction().commit();
         }
-        catch(HibernateException E)
+        catch(Exception E)
         {
-
+            E.printStackTrace();
         }
         finally
         {
@@ -35,14 +37,14 @@ public class ArenaDAO {
         }
     }
 
-    public Arena readArena(int arenaId)
+    public Admin readAdmin(int id)
     {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         try
         {
-            return session.get(Arena.class, arenaId);
+            return session.get(Admin.class, id);
         }
         catch(Exception E)
         {
@@ -54,24 +56,22 @@ public class ArenaDAO {
             session.close();
         }
     }
+    public List<Admin> readAllAdmins(){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
-    public List<Arena> readAllArenas(){
-        Session s = sessionFactory.openSession();
-        s.beginTransaction();
-
-        List<Arena> arenas = s.createQuery("FROM Arena", Arena.class).list();
-        s.close();
-        return arenas;
+        List<Admin> admins = session.createQuery("FROM Admin", Admin.class).list();
+        session.close();
+        return admins;
     }
-
-    public void updateArena(Arena arena)
+    public void updateAdmin(Admin admin)
     {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         try
         {
-            session.merge(arena);
+            session.merge(admin);
             session.getTransaction().commit();
         }
         catch (Exception E)
@@ -82,15 +82,14 @@ public class ArenaDAO {
             session.close();
         }
     }
-
-    public void deleteArena(Arena arena)
+    public void deleteAdmin(Admin admin)
     {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         try
         {
-           session.remove(arena);
+            session.remove(admin);
         }
         catch(HibernateException E)
         {
