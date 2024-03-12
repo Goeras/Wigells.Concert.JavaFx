@@ -20,7 +20,7 @@ public class Arena {
     @Column(name = "inside")
     private boolean inside;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
     private Address address;
 
