@@ -10,14 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.dreamteamdb.wigellsconcertjavafx.DAO.AddressDAO;
-import org.dreamteamdb.wigellsconcertjavafx.DAO.ArenaDAO;
-import org.dreamteamdb.wigellsconcertjavafx.DAO.ConcertDAO;
-import org.dreamteamdb.wigellsconcertjavafx.DAO.CustomerDAO;
-import org.dreamteamdb.wigellsconcertjavafx.Entitys.Address;
-import org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena;
-import org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert;
-import org.dreamteamdb.wigellsconcertjavafx.Entitys.Customer;
+import org.dreamteamdb.wigellsconcertjavafx.DAO.*;
+import org.dreamteamdb.wigellsconcertjavafx.Entitys.*;
 import org.dreamteamdb.wigellsconcertjavafx.HelloApplication;
 import org.hibernate.HibernateException;
 
@@ -33,7 +27,7 @@ public class ViewManager {
     ArenaDAO arenaDAO = new ArenaDAO();
     AddressDAO addressDAO = new AddressDAO();
 
-    /*AdminDAO adminDAO = new AdminDAO();*/
+    AdminDAO adminDAO = new AdminDAO();
 
 
     //CONCERTPROPERTIES
@@ -187,13 +181,14 @@ public class ViewManager {
     }
 
     public void deleteArena(int id){
-        arenaDAO.deleteArena(id);
+        Arena arena = arenaDAO.readArena(id);
+        arenaDAO.deleteArena(arena);
     }
 
-    /*public void deleteAdmin(int id){
+    public void deleteAdmin(int id){
         Admin admin = adminDAO.readAdmin(id);
         adminDAO.deleteAdmin(admin);
-    }*/
+    }
 
     /*public void newAdmin(String name, String password){
         Admin admin = new Admin();
