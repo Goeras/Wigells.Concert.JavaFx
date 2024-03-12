@@ -37,6 +37,12 @@ public class AdminViewController {
     private TableColumn<Customer, String> name;
     @FXML
     private TableColumn<Customer, String> birthdate;
+    @FXML
+    private TableColumn<Customer, String> streetAddress;
+    @FXML
+    private TableColumn<Customer, String> postAddress;
+    @FXML
+    private TableColumn<Customer, String> phoneNr;
 
     public void initialize() {
         ViewManager viewManager = new ViewManager();
@@ -53,6 +59,9 @@ public class AdminViewController {
         name.setCellValueFactory(cellData -> viewManager.getCustomerFullName(cellData.getValue().getId()));
         birthdate.setCellValueFactory(cellData -> viewManager.getCustomerBirth(cellData.getValue().getId()));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        streetAddress.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getStreetAdress(cellData.getValue().getId())));
+        postAddress.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPostalCode(cellData.getValue().getId()) + " " + viewManager.getCity(cellData.getValue().getId())));
+        phoneNr.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPhoneNumber(cellData.getValue().getId())));
 
 
 

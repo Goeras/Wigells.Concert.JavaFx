@@ -24,4 +24,10 @@ public class HelloController {
         Stage stage = (Stage) welcomeText.getScene().getWindow();
         viewManager.loadNewCustPage(stage);
     }
+    @FXML
+    public void onAdminButtonClick() throws IOException{
+        ViewManager viewManager = new ViewManager();
+        Stage stage = (Stage) welcomeText.getScene().getWindow();
+        viewManager.loadAdminPage(stage);
+    }
 }

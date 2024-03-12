@@ -10,7 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.AdminViewController"
             prefHeight="400.0" prefWidth="600.0">
-
+<VBox>
     <VBox>
         <HBox>
         <TableView fx:id= "upComingConcerts" maxHeight="200">
@@ -23,16 +23,21 @@
                 <TableColumn fx:id="upcomingMinAge" text="Åldersgräns"/>
             </columns>
         </TableView>
-        <Button fx:id="seeConcertCustomers" text="Se kundlista för markerad konsert" onAction="#onSeeCustButton"/>
-        <Button text="Ny konsert"/>
-        <Button text="Ta bort markerad konsert"/>
-        <Button text="Uppdatera markerad konsert"/>
+            <VBox>
+                <Button fx:id="seeConcertCustomers" text="Se kundlista för markerad konsert" onAction="#onSeeCustButton"/>
+                <Button text="Ny konsert"/>
+                <Button text="Ta bort markerad konsert"/>
+                <Button text="Uppdatera markerad konsert"/>
+            </VBox>
+
+
     </HBox>
         <TableView fx:id="concertCustomers" managed="false" visible="false">
             <columns>
                 <TableColumn fx:id="id"/>
                 <TableColumn fx:id="name"/>
-                <TableColumn fx:id="adressId"/>
+                <TableColumn fx:id="streetAddress"/>
+                <TableColumn fx:id="postAddress"/>
                 <TableColumn fx:id="birthdate"/>
                 <TableColumn fx:id="phoneNr"/>
             </columns>
@@ -48,11 +53,13 @@
                 <TableColumn fx:id="arenaIndoor"/>
             </columns>
         </TableView>
-        <Button text="Uppdatera Arena"/>
-        <Button text="Ta bort arena"/>
-        <Button text="Ny arena"/>
-        <Button text="Se konserter arena"/>
-        <Button text="Logga ut"/>
+            <VBox>
+                <Button text="Uppdatera Arena"/>
+                <Button text="Ta bort arena"/>
+                <Button text="Ny arena"/>
+                <Button text="Se konserter arena"/>
+            </VBox>
+
         </HBox>
         <TableView fx:id="concertArenas" managed="false" visible="false">
             <columns>
@@ -86,6 +93,7 @@
             <TextField/>
             <TextField/>
         </VBox>
+        <Button text="Logga ut"/>
     </VBox>
-
+</VBox>
 </AnchorPane>

@@ -112,6 +112,10 @@ public class ViewManager {
         Customer customer = getCustomerById(id);
         return Integer.toString(customer.getAddress().getPostalCode());
     }
+    public String getPhoneNumber(int id){
+        Customer customer= getCustomerById(id);
+        return Integer.toString(customer.getPhoneNumber());
+    }
     public String getCity(int id){
         Customer customer = getCustomerById(id);
         return customer.getAddress().getCity();
@@ -131,6 +135,9 @@ public class ViewManager {
     public SimpleStringProperty getCustomerPhone(int id){
         Customer customer = getCustomerById(id);
         return new SimpleStringProperty(Integer.toString(customer.getPhoneNumber()));
+    }
+    public SimpleStringProperty toStringProperty(String string){
+        return new SimpleStringProperty(string);
     }
     //OBS BYT TILL INLÄSNING DETTA ÄR BARA TEST
     public Customer getCustomerById(int id){
@@ -308,5 +315,11 @@ public class ViewManager {
         stage.setScene(scene);
         stage.show();
     }
-
+    public void loadAdminPage(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 650);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

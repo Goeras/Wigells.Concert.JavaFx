@@ -22,7 +22,6 @@
         <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena"/>
         <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert"/>
         <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.Address"/>
-        <mapping class="org.dreamteamdb.wigellsconcertjavafx.Entitys.WC"/>
 
 
     </session-factory>
