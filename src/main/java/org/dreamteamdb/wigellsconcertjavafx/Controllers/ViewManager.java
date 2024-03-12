@@ -141,7 +141,9 @@ public class ViewManager {
     }
     //OBS BYT TILL INLÄSNING DETTA ÄR BARA TEST
     public Customer getCustomerById(int id){
-        Customer customer = new Customer();
+        Customer customer = customerDAO.getCustomerById(id);
+
+        /*Customer customer = new Customer();
         customer.setFirstName("förnamn");
         customer.setLastName("efternamn");
         customer.setBirthDate(LocalDate.now());
@@ -152,7 +154,7 @@ public class ViewManager {
         address.setPostalCode(12345);
         address.setCity("Stad");
 
-        customer.setAddress(address);
+        customer.setAddress(address);*/
         return customer;
     }
 
@@ -238,13 +240,14 @@ public class ViewManager {
         arenaDAO.createArena(arena);
     }
 
-    public void updateCustomer(int id, String firstName, String lastName, int phoneNumber, Address address){
-        Customer customer = customerDAO.getCustomerById(id);
+    public void updateCustomer(Customer customer, Address address){
+        /*Customer customer = customerDAO.getCustomerById(id);
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
         customer.setPhoneNumber(phoneNumber);
-        customer.setAddress(address);
+        customer.setAddress(address);*/
 
+        addressDAO.updateAddress(address);
         customerDAO.updateCustomer(customer);
     }
 
@@ -292,35 +295,35 @@ public class ViewManager {
     public void loadCustomerPage(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("customer-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 650);
-        stage.setTitle("Hello!");
+        stage.setTitle("Din Sida");
         stage.setScene(scene);
         stage.show();
     }
     public void loadChangeInfoPage(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("changeInfo-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 650);
-        stage.setTitle("Hello!");
+        stage.setTitle("Uppdatera dina personuppgifter");
         stage.setScene(scene);
         stage.show();
     }
     public void loadLoginPage(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 650);
-        stage.setTitle("Hello!");
+        stage.setTitle("Wigello Concerto");
         stage.setScene(scene);
         stage.show();
     }
     public void loadNewCustPage(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("newCust-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 650);
-        stage.setTitle("Hello!");
+        stage.setTitle("Ny kund");
         stage.setScene(scene);
         stage.show();
     }
     public void loadAdminPage(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 650);
-        stage.setTitle("Hello!");
+        stage.setTitle("Admin");
         stage.setScene(scene);
         stage.show();
     }
