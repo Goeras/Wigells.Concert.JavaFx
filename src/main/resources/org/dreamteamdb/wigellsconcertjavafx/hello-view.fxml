@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.HelloController">
   <padding>
@@ -12,7 +13,11 @@
   </padding>
 
   <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+  <Label text="Telefonnummer"/>
+  <TextField fx:id="phoneNumber"/>
+  <Label text="Lösenord"/>
+  <TextField fx:id="password"/>
+  <Button text="Logga in" onAction="#onHelloButtonClick"/>
   <Button text="Ny kund" onAction="#onNewCustButtonClick"/>
   <Button text="Admin" onAction="#onAdminButtonClick"/>
 </VBox>
