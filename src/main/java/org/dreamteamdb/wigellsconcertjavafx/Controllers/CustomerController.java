@@ -99,6 +99,8 @@ public class CustomerController {
         Concert concert = upcomingTickets.getSelectionModel().getSelectedItem();
         System.out.println(concert.getArtistName());
         viewManager.addNewConcert(concert, customer);
+        yourConcertList = viewManager.customerTickets(customer);
+        yourTickets.setItems(yourConcertList);
     }
     @FXML
     public void onLogoutButtonClick() throws IOException {
