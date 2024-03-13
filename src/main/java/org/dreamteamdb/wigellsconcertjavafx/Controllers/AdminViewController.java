@@ -110,7 +110,7 @@ public class AdminViewController {
     @FXML
     private TextField updateConcertDate;
     @FXML
-    private ChoiceBox updateArenaChoice;
+    private ChoiceBox<Arena> updateArenaChoice;
     @FXML
     private TextField updateConcertArena;
     ObservableList<Arena> observableList;
@@ -129,24 +129,19 @@ public class AdminViewController {
 
         name.setCellValueFactory(cellData -> viewManager.getCustomerFullName(cellData.getValue().getId()));
         birthdate.setCellValueFactory(cellData -> viewManager.getCustomerBirth(cellData.getValue().getId()));
-       id.setCellValueFactory(new PropertyValueFactory<>("id"));
-      streetAddress.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getStreetAdress(cellData.getValue().getId())));
-       postAddress.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPostalCode(cellData.getValue().getId()) + " " + viewManager.getCity(cellData.getValue().getId())));
-       phoneNr.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPhoneNumber(cellData.getValue().getId())));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        streetAddress.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getStreetAdress(cellData.getValue().getId())));
+        postAddress.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPostalCode(cellData.getValue().getId()) + " " + viewManager.getCity(cellData.getValue().getId())));
+        phoneNr.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPhoneNumber(cellData.getValue().getId())));
 
         arenaName.setCellValueFactory(cellData -> viewManager.toStringProperty(cellData.getValue().getName()));
         arenaStreet.setCellValueFactory(cellData -> viewManager.toStringProperty(cellData.getValue().getAddress().getStreet() + " " + cellData.getValue().getAddress().getHouseNo()));
         arenaPost.setCellValueFactory(cellData -> viewManager.toStringProperty(cellData.getValue().getAddress().getPostalCode() + " " + cellData.getValue().getAddress().getCity()));
         arenaIndoor.setCellValueFactory(cellData -> viewManager.indoorProperty(cellData.getValue()));
 
-
         List<Arena> arenasList = viewManager.arenaDAO.readAllArenas();
         observableList = FXCollections.observableList(arenasList);
         arenas.setItems(observableList);
-
-        List<Customer> customers = viewManager.customerDAO.getAllCustomers();
-        ObservableList<Customer> customerList = FXCollections.observableList(customers);
-        concertCustomers.setItems(customerList);
     }
 
     @FXML
@@ -233,8 +228,6 @@ public class AdminViewController {
         arena.setName(newArenaName.getText());
         arena.setAddress(address);
         arena.setInside(indoorCheckBox.isSelected());
-
-
         viewManager.arenaDAO.createArena(arena);
 
         if(newArena.isManaged()){
@@ -274,8 +267,6 @@ public class AdminViewController {
         arena.getAddress().setPostalCode(Integer.parseInt(updatePostal.getText()));
         arena.getAddress().setCity(updateCity.getText());
         arena.setInside(indoorcheck.isSelected());
-
-
         viewManager.arenaDAO.updateArena(arena);
 
         if(updateArena.isManaged()){

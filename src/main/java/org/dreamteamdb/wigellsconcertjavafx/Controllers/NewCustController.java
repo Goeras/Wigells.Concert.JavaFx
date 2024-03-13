@@ -1,6 +1,7 @@
 package org.dreamteamdb.wigellsconcertjavafx.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Address;
@@ -25,7 +26,7 @@ public class NewCustController {
     @FXML
     private TextField birthday;
     @FXML
-    private TextField passWord;
+    private PasswordField passWord;
     @FXML
     private TextField phoneNumber;
 

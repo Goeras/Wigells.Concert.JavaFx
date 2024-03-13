@@ -15,6 +15,8 @@ public class HelloController {
     private TextField password;
     @FXML
     private TextField phoneNumber;
+    @FXML
+    private Label loginexception;
 
 
     @FXML
@@ -25,6 +27,12 @@ public class HelloController {
         if(loginSuccesfull){
             Stage stage = (Stage) welcomeText.getScene().getWindow();
             viewManager.loadCustomerPage(stage);
+        }
+        else{
+            password.setText("");
+            phoneNumber.setText("");
+            loginexception.setManaged(true);
+            loginexception.setVisible(true);
         }
 
     }

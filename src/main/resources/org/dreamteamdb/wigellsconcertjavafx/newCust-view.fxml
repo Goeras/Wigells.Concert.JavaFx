@@ -6,46 +6,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<StackPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.NewCustController"
             prefHeight="400.0" prefWidth="600.0">
-<VBox>
-    <Label text="Fyll i alla nedanstående fält"/>
-    <HBox>
-        <Label text="Förnamn"/>
-        <TextField fx:id="firstName"/>
-        <Label text="Efternamn"/>
-        <TextField fx:id="lastName"/>
+
+    <VBox alignment="CENTER" spacing="10">
+    <Label text="Ny kund" style="-fx-font-size: 20"/>
+    <Label text="Fyll i alla nedanstående fält" style="-fx-font-size: 16" />
+    <HBox alignment="CENTER">
+
+        <TextField fx:id="firstName" promptText="Förnamn" maxWidth="100" style="-fx-font-size:14"/>
+
+        <TextField fx:id="lastName" promptText="Efternamn" maxWidth="100" style="-fx-font-size:14"/>
     </HBox>
-    <HBox>
-        <Label text="Gatuadress"/>
-        <TextField fx:id="street"/>
-        <Label text="Gatnummer"/>
-        <TextField fx:id="housenumber"/>
+    <HBox alignment="CENTER">
+
+        <TextField fx:id="street" promptText="Gata" maxWidth="100" style="-fx-font-size:14"/>
+        <TextField fx:id="housenumber" promptText="Husnummer" maxWidth="100" style="-fx-font-size:14"/>
     </HBox>
-    <HBox>
-        <Label text="Postkod"/>
-        <TextField fx:id="postalcode"/>
-        <Label text="Stad"/>
-        <TextField fx:id="city"/>
+    <HBox alignment="CENTER">
+        <TextField fx:id="postalcode" promptText="Postkod" maxWidth="100" style="-fx-font-size:14"/>
+        <TextField fx:id="city" promptText="Stad" maxWidth="100" style="-fx-font-size:14"/>
     </HBox>
-    <HBox>
-        <Label text="Födelseår (ÅÅÅÅ-mm-dd"/>
-        <TextField fx:id="birthday"/>
-    </HBox>
-    <HBox>
-        <Label text="Telefonnummer"/>
-        <TextField fx:id="phoneNumber"/>
-    </HBox>
-    <HBox>
-        <Label text="Lösenord"/>
-        <TextField fx:id="passWord"/>
-    </HBox>
+        <TextField fx:id="birthday" promptText="Födelseår (ÅÅÅÅ-mm-dd)" maxWidth="200" style="-fx-font-size:14"/>
+        <TextField fx:id="phoneNumber" promptText="Telefonnummer" maxWidth="200" style="-fx-font-size:14"/>
+        <PasswordField fx:id="passWord" promptText="Lösenord" maxWidth="200" style="-fx-font-size:14"/>
     <Button fx:id="saveCust" text="Spara kund" onAction="#onSaveButtonClick"/>
     <Button fx:id="back" text="Tillbaka" onAction="#onBackButton"/>
 
 
 
 </VBox>
-</AnchorPane>
+</StackPane>
