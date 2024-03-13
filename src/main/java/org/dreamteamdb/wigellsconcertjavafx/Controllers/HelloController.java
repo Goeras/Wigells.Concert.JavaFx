@@ -46,6 +46,6 @@ public class HelloController {
     public void onAdminButtonClick() throws IOException{
         ViewManager viewManager = new ViewManager();
         Stage stage = (Stage) welcomeText.getScene().getWindow();
-        viewManager.loadAdminPage(stage);
+        viewManager.loadAdminLogInPage(stage);
     }
 }

@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Address;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Arena;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Concert;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Customer;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -113,6 +115,7 @@ public class AdminViewController {
     private ChoiceBox<Arena> updateArenaChoice;
     @FXML
     private TextField updateConcertArena;
+
     ObservableList<Arena> observableList;
 
     public void initialize() {
@@ -278,5 +281,10 @@ public class AdminViewController {
             updateArena.setVisible(false);
             updateArena.setManaged(false);
         }
+    }
+    @FXML
+    public void onLogoutButtonClick() throws IOException {
+        Stage stage = (Stage) updateConcertArena.getScene().getWindow();
+        viewManager.loadLoginPage(stage);
     }
 }

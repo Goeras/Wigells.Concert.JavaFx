@@ -334,4 +334,12 @@ public class ViewManager {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void loadAdminLogInPage(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("adminLogIn-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 650);
+        stage.setTitle("Admin");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
