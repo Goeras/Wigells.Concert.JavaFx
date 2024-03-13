@@ -134,7 +134,7 @@ public class AdminViewController {
         postAddress.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPostalCode(cellData.getValue().getId()) + " " + viewManager.getCity(cellData.getValue().getId())));
         phoneNr.setCellValueFactory(cellData -> viewManager.toStringProperty(viewManager.getPhoneNumber(cellData.getValue().getId())));
 
-        arenaName.setCellValueFactory(cellData -> viewManager.toStringProperty(cellData.getValue().getName()));
+       arenaName.setCellValueFactory(cellData -> viewManager.toStringProperty(cellData.getValue().getName()));
         arenaStreet.setCellValueFactory(cellData -> viewManager.toStringProperty(cellData.getValue().getAddress().getStreet() + " " + cellData.getValue().getAddress().getHouseNo()));
         arenaPost.setCellValueFactory(cellData -> viewManager.toStringProperty(cellData.getValue().getAddress().getPostalCode() + " " + cellData.getValue().getAddress().getCity()));
         arenaIndoor.setCellValueFactory(cellData -> viewManager.indoorProperty(cellData.getValue()));
@@ -175,6 +175,8 @@ public class AdminViewController {
         concert.setTicketPrice(Double.parseDouble(newConcertPrice.getText()));
 
         viewManager.concertDAO.createConcert2(concert, arena.getId());
+        ObservableList concertObservableList = FXCollections.observableList(viewManager.concertDAO.readAllConcerts());
+        upComingConcerts.setItems(concertObservableList);
 
         if(newConcert.isManaged()){
             newConcert.setManaged(false);
@@ -198,7 +200,8 @@ public class AdminViewController {
     @FXML
     public void onSaveUpdateConcert(){
         Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
-        concert.setArena((Arena) updateArenaChoice.getValue());
+        if(updateArenaChoice.getValue() != null){
+        concert.setArena((Arena) updateArenaChoice.getValue());}
         concert.setArtistName(updateConcertArtist.getText());
         concert.setTicketPrice(Double.parseDouble(updateConcertPrice.getText()));
         concert.setDate(LocalDate.parse(updateConcertDate.getText()));
@@ -229,6 +232,8 @@ public class AdminViewController {
         arena.setAddress(address);
         arena.setInside(indoorCheckBox.isSelected());
         viewManager.arenaDAO.createArena(arena);
+        observableList = FXCollections.observableList(viewManager.arenaDAO.readAllArenas());
+        arenas.setItems(observableList);
 
         if(newArena.isManaged()){
             newArena.setManaged(false);
