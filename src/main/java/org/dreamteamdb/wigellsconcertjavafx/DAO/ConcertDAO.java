@@ -72,6 +72,7 @@ public class ConcertDAO {
         s.beginTransaction();
         try{
             s.remove(concert);
+            s.getTransaction().commit();
         }
         catch(HibernateException he){
             he.printStackTrace();

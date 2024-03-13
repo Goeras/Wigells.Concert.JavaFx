@@ -91,6 +91,7 @@ public class ArenaDAO {
         try
         {
            session.remove(arena);
+           session.getTransaction().commit();
         }
         catch(HibernateException E)
         {
