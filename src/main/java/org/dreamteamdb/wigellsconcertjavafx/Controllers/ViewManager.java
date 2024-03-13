@@ -53,16 +53,15 @@ public class ViewManager {
         return new SimpleIntegerProperty(age);
     }
 
-    public ObservableList<Concert> customerTickets(int customerId){
+    public ObservableList<Concert> customerTickets(Customer customer/*int customerId*/){
         //OBS TEST BYT TILL INLÄSNING FRÅN DATABAS
-        Customer customer = getCustomerById(customerId); // = customerDAO.getCustomerById(customerId);
+        //Customer customer = getCustomerById(customerId); // = customerDAO.getCustomerById(customerId);
         ObservableList<Concert> observableList = FXCollections.observableList(customer.getConcertList());
         return observableList;
     }
-    public ObservableList<Concert> addNewConcert(Concert concert, int id){
-        Customer customer = getCustomerById(id);
+    public ObservableList<Concert> addNewConcert(Concert concert, Customer customer){
         customer.addConcertToList(concert);
-        //Spara customer till databas
+        customerDAO.updateCustomer(customer);
         ObservableList<Concert> observableList = FXCollections.observableList(customer.getConcertList());
         return observableList;
 

@@ -55,14 +55,15 @@ public class CustomerController {
     private ObservableList<Concert> upcomingConcertList;
     private int loggedIn;
     private ViewManager viewManager;
+    private Customer customer;
 
 
 
     public void initialize(){
         loggedIn = CurrentUser.getInstance().getCurrentUser().getId(); //0;
-        Customer customer = CurrentUser.getInstance().getCurrentUser();
+        customer = CurrentUser.getInstance().getCurrentUser();
         viewManager = new ViewManager();
-        yourConcertList = viewManager.customerTickets(loggedIn);
+        yourConcertList = viewManager.customerTickets(customer/*loggedIn*/);
         upcomingConcertList = viewManager.upcomingConcerts();
 
         name.setText(customer.getFirstName() + " " + customer.getLastName());
@@ -96,7 +97,8 @@ public class CustomerController {
     @FXML
     public void onBuyTicketsClick(){
         Concert concert = upcomingTickets.getSelectionModel().getSelectedItem();
-        viewManager.addNewConcert(concert, loggedIn);
+        System.out.println(concert.getArtistName());
+        viewManager.addNewConcert(concert, customer);
     }
     @FXML
     public void onLogoutButtonClick() throws IOException {
