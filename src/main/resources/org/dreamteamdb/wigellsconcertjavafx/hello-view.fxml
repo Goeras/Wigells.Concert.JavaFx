@@ -3,23 +3,26 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.HBox?>
+
 <VBox alignment="CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.HelloController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
   </padding>
+    <Label fx:id="welcomeText" text="Wigells Concert" style="-fx-font-size: 20px"/>
+    <Label fx:id="loginexception" text="Fel användarnamn eller lösenord" managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
+    <Label text="Telefonnummer" style="-fx-font-size: 16"/>
 
-  <Label fx:id="loginexception" text="Fel användarnamn eller lösenord" managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
-  <Label fx:id="welcomeText"/>
-  <Label text="Telefonnummer"/>
-
-  <TextField fx:id="phoneNumber"/>
-  <Label text="Lösenord"/>
-  <TextField fx:id="password"/>
-  <Button text="Logga in" onAction="#onHelloButtonClick"/>
-  <Button text="Ny kund" onAction="#onNewCustButtonClick"/>
-  <Button text="Admin" onAction="#onAdminButtonClick"/>
+    <TextField fx:id="phoneNumber" style="-fx-font-size: 14" maxWidth="200"/>
+    <Label text="Lösenord" style="-fx-font-size: 16"/>
+    <PasswordField fx:id="password" style="-fx-font-size: 14" maxWidth="200"/>
+    <HBox alignment="CENTER" spacing="10">
+      <Button text="Logga in" onAction="#onHelloButtonClick"/>
+      <Button text="Ny kund" onAction="#onNewCustButtonClick"/>
+    </HBox>
+    <Button text="Admin" onAction="#onAdminButtonClick"/>
 </VBox>
