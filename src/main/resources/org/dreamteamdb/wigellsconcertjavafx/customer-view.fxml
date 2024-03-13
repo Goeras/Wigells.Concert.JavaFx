@@ -37,6 +37,7 @@
         </columns>
     </TableView>
     <Button fx:id="buyTicket" text="Köp Biljetter" onAction="#onBuyTicketsClick"/>
+    <Button fx:id="cancelTicket" text="Avboka Biljett" onAction="#onCancelTicketsClick"/>
     <Button fx:id="logout" text="Logga ut" onAction="#onLogoutButtonClick"/>
 </VBox>
 </AnchorPane>
