@@ -56,7 +56,7 @@ public class ConcertDAO {
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
-            s.merge(concert);
+            s.saveOrUpdate(concert);
             s.getTransaction().commit();
         }
         catch(HibernateException he){
