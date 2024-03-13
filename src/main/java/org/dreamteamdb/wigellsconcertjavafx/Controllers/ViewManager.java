@@ -200,8 +200,7 @@ public class ViewManager {
         return false;
     }
 
-    public void deleteCustomer(int id){
-        Customer customer = customerDAO.getCustomerById(id);
+    public void deleteCustomer(Customer customer){
         customerDAO.deleteCustomer(customer);
     }
 

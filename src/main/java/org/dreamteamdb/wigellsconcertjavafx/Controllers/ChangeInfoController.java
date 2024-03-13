@@ -76,4 +76,12 @@ public class ChangeInfoController {
         ViewManager viewManager = new ViewManager();
         viewManager.loadCustomerPage(stage);
     }
+
+    @FXML
+    private void onDeleteClick() throws IOException {
+        ViewManager viewManager = new ViewManager();
+        viewManager.deleteCustomer(customer);
+        Stage stage = (Stage) firstName.getScene().getWindow();
+        viewManager.loadLoginPage(stage);
+    }
 }

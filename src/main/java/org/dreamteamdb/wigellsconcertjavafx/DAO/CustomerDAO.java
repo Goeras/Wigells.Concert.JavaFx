@@ -70,6 +70,7 @@ public class CustomerDAO {
         s.beginTransaction();
         try{
             s.remove(customer);
+            s.getTransaction().commit();
         }
         catch(HibernateException he){
             he.printStackTrace();

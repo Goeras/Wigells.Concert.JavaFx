@@ -21,6 +21,6 @@
         <TextField fx:id="city"/>
         <Button text="Spara ny info" onAction="#onSaveButtonClick"/>
         <Button text="Tillbaka" onAction="#onBackButtonClick"/>
-        <Button text="Ta bort din användare"/>
+        <Button text="Ta bort din användare" onAction="#onDeleteClick"/>
     </VBox>
 </AnchorPane>
