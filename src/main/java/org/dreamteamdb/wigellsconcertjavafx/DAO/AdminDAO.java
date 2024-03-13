@@ -71,7 +71,7 @@ public class AdminDAO {
 
         try
         {
-            session.merge(admin);
+            session.saveOrUpdate(admin);
             session.getTransaction().commit();
         }
         catch (Exception E)

@@ -71,7 +71,7 @@ public class ArenaDAO {
 
         try
         {
-            session.merge(arena);
+            session.saveOrUpdate(arena);
             session.getTransaction().commit();
         }
         catch (Exception E)

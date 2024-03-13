@@ -74,7 +74,7 @@ public class AddressDAO {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         try {
-            session.merge(address);
+            session.saveOrUpdate(address);
             session.getTransaction().commit();
         }
         catch (Exception e){

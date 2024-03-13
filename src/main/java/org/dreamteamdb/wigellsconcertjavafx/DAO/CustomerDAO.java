@@ -54,7 +54,7 @@ public class CustomerDAO {
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         try{
-            s.merge(customer);
+            s.saveOrUpdate(customer);
             s.getTransaction().commit();
         }
         catch(HibernateException he){
