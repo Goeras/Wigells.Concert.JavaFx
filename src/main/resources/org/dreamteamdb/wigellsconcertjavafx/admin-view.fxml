@@ -103,6 +103,6 @@
             <CheckBox fx:id="indoorcheck" text="Indoor"/>
             <Button text="Soara" onAction="#onSaveUpdateArenaButton"/>
         </VBox>
-        <Button text="Logga ut"/>
+        <Button text="Logga ut" onAction="#onLogoutButtonClick"/>
     </VBox>
 </AnchorPane>
