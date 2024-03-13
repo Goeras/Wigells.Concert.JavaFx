@@ -101,6 +101,14 @@ public class CustomerController {
         viewManager.addNewConcert(concert, customer);
         yourTickets.refresh();
     }
+
+    @FXML
+    public void onCancelTicketsClick(){
+        Concert concert = yourTickets.getSelectionModel().getSelectedItem();
+        System.out.println(concert.getArtistName());
+        viewManager.removeConcert(concert, customer);
+        yourTickets.refresh();
+    }
     @FXML
     public void onLogoutButtonClick() throws IOException {
         Stage stage = (Stage) name.getScene().getWindow();

@@ -66,6 +66,15 @@ public class ViewManager {
         return observableList;
 
     }
+
+    public ObservableList<Concert> removeConcert(Concert concert, Customer customer){
+        customer.removeConcertFromList(concert);
+        customerDAO.updateCustomer(customer);
+        ObservableList<Concert> observableList = FXCollections.observableList(customer.getConcertList());
+        return observableList;
+
+    }
+
     public ObservableList<Concert> upcomingConcerts(){
         List<Concert> upcomingConcerts = concertDAO.readAllConcerts();
         upcomingConcerts.add(createTestConcert());

@@ -118,6 +118,10 @@ public class Customer {
         this.concertList.add(concert);
     }
 
+    public void removeConcertFromList(Concert concert){
+        this.concertList.remove(concert);
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
