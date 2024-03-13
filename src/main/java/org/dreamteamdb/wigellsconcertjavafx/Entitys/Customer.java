@@ -38,7 +38,7 @@ public class Customer {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "concert_customer",
     joinColumns = {@JoinColumn(name = "customer_id")},
     inverseJoinColumns = {@JoinColumn(name = "concert_id")})

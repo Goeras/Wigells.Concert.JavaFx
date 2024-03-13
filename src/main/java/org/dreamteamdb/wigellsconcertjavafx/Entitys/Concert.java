@@ -31,11 +31,11 @@ public class Concert {
     @Column(name = "age_limit")
     private int ageLimit;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "arena_id")
     private Arena arena;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "concert_customer",
     joinColumns = {@JoinColumn(name = "concert_id")},
     inverseJoinColumns = {@JoinColumn(name = "customer_id")})
