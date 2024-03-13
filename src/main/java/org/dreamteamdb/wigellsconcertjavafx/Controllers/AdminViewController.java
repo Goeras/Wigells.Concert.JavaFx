@@ -101,6 +101,20 @@ public class AdminViewController {
     @FXML
     ChoiceBox<Arena> arenaChoiceBox;
 
+    @FXML
+    private TextField updateConcertArtist;
+    @FXML
+    private TextField updateConcertPrice;
+    @FXML
+    private TextField updateConcertAge;
+    @FXML
+    private TextField updateConcertDate;
+    @FXML
+    private ChoiceBox updateArenaChoice;
+    @FXML
+    private TextField updateConcertArena;
+    ObservableList<Arena> observableList;
+
     public void initialize() {
         viewManager = new ViewManager();
         upcomingConcertList = viewManager.upcomingConcerts();
@@ -127,7 +141,7 @@ public class AdminViewController {
 
 
         List<Arena> arenasList = viewManager.arenaDAO.readAllArenas();
-        ObservableList observableList = FXCollections.observableList(arenasList);
+        observableList = FXCollections.observableList(arenasList);
         arenas.setItems(observableList);
 
         List<Customer> customers = viewManager.customerDAO.getAllCustomers();
@@ -153,7 +167,7 @@ public class AdminViewController {
             newConcert.setVisible(true);
         }
         List<Arena> arenasList = viewManager.arenaDAO.readAllArenas();
-        ObservableList observableList = FXCollections.observableList(arenasList);
+        observableList = FXCollections.observableList(arenasList);
         arenaChoiceBox.setItems(observableList);
     }
     @FXML
@@ -174,6 +188,13 @@ public class AdminViewController {
     }
     @FXML
     public void onUpdateConcertButton(){
+            Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
+            updateConcertArtist.setText(concert.getArtistName());
+            updateConcertDate.setText(concert.getDate().toString());
+            updateConcertAge.setText(Integer.toString(concert.getAgeLimit()));
+            updateConcertPrice.setText(Double.toString(concert.getTicketPrice()));
+            updateConcertArena.setText(concert.getArena().getName());
+            updateArenaChoice.setItems(observableList);
         if(!updateConcert.isManaged()){
             updateConcert.setManaged(true);
             updateConcert.setVisible(true);
@@ -181,6 +202,13 @@ public class AdminViewController {
     }
     @FXML
     public void onSaveUpdateConcert(){
+        Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
+        concert.setArena((Arena) updateArenaChoice.getValue());
+        concert.setArtistName(updateConcertArtist.getText());
+        concert.setTicketPrice(Double.parseDouble(updateConcertPrice.getText()));
+        concert.setDate(LocalDate.parse(updateConcertDate.getText()));
+        concert.setAgeLimit(Integer.parseInt(updateConcertAge.getText()));
+        viewManager.concertDAO.updateConcert(concert);
         if(updateConcert.isManaged()){
             updateConcert.setVisible(false);
             updateConcert.setManaged(false);

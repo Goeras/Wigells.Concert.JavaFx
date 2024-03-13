@@ -51,10 +51,11 @@
         </VBox>
         <VBox fx:id="updateConcert" managed="false" visible="false">
             <TextField fx:id="updateConcertArtist" promptText="Artist" maxWidth="150"/>
-            <TextField fx:id="updateConcertArena" promptText="ArenaId" maxWidth="150"/>
+            <TextField fx:id="updateConcertArena" promptText="Arena" maxWidth="150"/>
             <TextField fx:id="updateConcertPrice" promptText="Biljettpris" maxWidth="150"/>
             <TextField fx:id="updateConcertAge" promptText="Åldersgräns" maxWidth="150"/>
             <TextField fx:id="updateConcertDate" promptText="Datum" maxWidth="150"/>
+            <ChoiceBox fx:id="updateArenaChoice"/>
             <Button text="Uppdatera konsert" onAction="#onSaveUpdateConcert"/>
         </VBox>
     </VBox>

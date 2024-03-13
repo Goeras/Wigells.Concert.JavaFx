@@ -7,10 +7,8 @@
     <list default="true" id="1bad31a8-0774-4b45-9a71-056c3659429b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Entitys/Concert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Entitys/Concert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Entitys/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Entitys/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Entitys/WC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Entitys/WC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Controllers/AdminViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreamteamdb/wigellsconcertjavafx/Controllers/AdminViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/dreamteamdb/wigellsconcertjavafx/admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/dreamteamdb/wigellsconcertjavafx/admin-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
