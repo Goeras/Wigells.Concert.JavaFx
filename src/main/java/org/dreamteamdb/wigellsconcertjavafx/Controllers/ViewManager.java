@@ -77,25 +77,8 @@ public class ViewManager {
 
     public ObservableList<Concert> upcomingConcerts(){
         List<Concert> upcomingConcerts = concertDAO.readAllConcerts();
-        upcomingConcerts.add(createTestConcert());
         ObservableList<Concert> observableList = FXCollections.observableList(upcomingConcerts);
         return observableList;
-    }
-    //ENBART TEST FÖR ATT SIMULERA DATA
-    public Concert createTestConcert(){
-        Arena arena = new Arena();
-        arena.setName("Skolans gympahall");
-        arena.setInside(true);
-        arena.setAddress(new Address());
-
-        Concert concert = new Concert();
-        concert.setDate(LocalDate.now());
-        concert.setArena(arena);
-        concert.setArtistName("Carola");
-        concert.setTicketPrice(10.1);
-        concert.setAgeLimit(10);
-
-        return concert;
     }
     //CUSTOMERPROPERTIES
     public String getCustomerFirstName(int id){
@@ -301,7 +284,7 @@ public class ViewManager {
     //LADDA NYA SIDOR
     public void loadCustomerPage(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("customer-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 650);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 800);
         stage.setTitle("Din Sida");
         stage.setScene(scene);
         stage.show();
