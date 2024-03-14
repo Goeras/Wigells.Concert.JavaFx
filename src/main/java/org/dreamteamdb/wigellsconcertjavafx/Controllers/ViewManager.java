@@ -127,12 +127,11 @@ public class ViewManager {
         return new SimpleStringProperty(Integer.toString(customer.getPhoneNumber()));
     }
 
-    public boolean validatePhoneNumber(String phoneNumber){
+    public boolean validatePhoneNumber(int phoneNumber){
         List<Customer> customerList = customerDAO.getAllCustomers();
         try{
-            int phoneInt = Integer.parseInt(phoneNumber);
             for(Customer customer : customerList){
-                if(customer.getPhoneNumber() == phoneInt){
+                if(customer.getPhoneNumber() == phoneNumber){
                     return false;
                 }
             }
