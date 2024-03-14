@@ -14,9 +14,10 @@
     </padding>
 
     <Label fx:id="welcomeText"/>
-    <Label text="Admin id"/>
-    <TextField fx:id="adminId"/>
-    <Label text="Lösenord"/>
-    <TextField fx:id="password"/>
+    <Label text="Admin id" style="-fx-font-size: 16"/>
+    <TextField fx:id="adminId" style="-fx-font-size: 14" maxWidth="200"/>
+    <Label text="Lösenord" style="-fx-font-size: 16"/>
+    <TextField fx:id="password" style="-fx-font-size: 14" maxWidth="200"/>
     <Button text="Logga in" onAction="#onAdminLogInButtonClick"/>
+    <Button text="Tillbaka" onAction="#onLogoutButtonClick"/>
 </VBox>
