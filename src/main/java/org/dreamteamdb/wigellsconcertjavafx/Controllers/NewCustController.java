@@ -1,6 +1,7 @@
 package org.dreamteamdb.wigellsconcertjavafx.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -11,6 +12,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class NewCustController {
+    @FXML
+    private Label newCustomerException;
+
     @FXML
     private TextField firstName;
     @FXML
@@ -43,7 +47,12 @@ public class NewCustController {
         LocalDate localDate = LocalDate.parse(birthday.getText());
         int housenr = Integer.parseInt(housenumber.getText());
         int phonenr = Integer.parseInt(phoneNumber.getText());
-        if(!viewManager.validatePhoneNumber(phonenr)) return;
+        if(!viewManager.validatePhoneNumber(phonenr)){
+            newCustomerException.setManaged(true);
+            newCustomerException.setVisible(true);
+
+            return;
+        }
         int postcode = Integer.parseInt(postalcode.getText());
         viewManager.newCustomer(firstName.getText(), lastName.getText(), phonenr, street.getText(), housenr, postcode, city.getText(), localDate, passWord.getText());
         onBackButton();

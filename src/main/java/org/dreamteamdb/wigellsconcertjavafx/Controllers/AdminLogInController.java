@@ -26,5 +26,11 @@ public class AdminLogInController {
         }
 
     }
+    @FXML
+    public void onLogoutButtonClick() throws IOException {
+        Stage stage = (Stage) welcomeText.getScene().getWindow();
+        ViewManager viewManager = new ViewManager();
+        viewManager.loadLoginPage(stage);
+    }
 }
 
