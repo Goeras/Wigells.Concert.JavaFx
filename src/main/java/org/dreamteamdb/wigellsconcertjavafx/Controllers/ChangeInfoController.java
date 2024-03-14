@@ -1,6 +1,7 @@
 package org.dreamteamdb.wigellsconcertjavafx.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.dreamteamdb.wigellsconcertjavafx.CurrentUser;
@@ -11,6 +12,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class ChangeInfoController {
+    @FXML
+    private Label newCustomerException;
 
     @FXML
     private TextField firstName;
@@ -33,7 +36,6 @@ public class ChangeInfoController {
     Customer customer = CurrentUser.getInstance().getCurrentUser();
     Address address = customer.getAddress();
     public void initialize(){
-        // loggedIn = CurrentUser.getInstance().getCurrentUser().getId(); //0;
 
         firstName.setText(customer.getFirstName());
         lastName.setText(customer.getLastName());
@@ -42,33 +44,43 @@ public class ChangeInfoController {
         houseNr.setText(String.valueOf(address.getHouseNo()));
         postalCode.setText(String.valueOf(address.getPostalCode()));
         city.setText(address.getCity());
-
-        /*ViewManager viewManager = new ViewManager();
-        firstName.setText(viewManager.getCustomerFirstName(loggedIn));
-        lastName.setText(viewManager.getCustomerLastName(loggedIn));
-        street.setText(viewManager.getStreetAdress(loggedIn));
-        houseNr.setText(viewManager.getHouseNumber(loggedIn));
-        postalCode.setText(viewManager.getPostalCode(loggedIn));
-        city.setText(viewManager.getCity(loggedIn));
-        birthDate.setText(viewManager.getCustBirthDay(loggedIn));*/
     }
     @FXML
     public void onSaveButtonClick() {
+        ViewManager viewManager = new ViewManager();
+        boolean validPhoneNumber = false;
+        try {
+            validPhoneNumber = viewManager.validatePhoneNumber(Integer.parseInt(phoneNumber.getText()));
+            int phoneInt = Integer.parseInt(phoneNumber.getText());
+            int hounseInt = Integer.parseInt(houseNr.getText());
+            int postInt = Integer.parseInt(postalCode.getText());
+            customer.setFirstName(firstName.getText());
+            customer.setLastName(lastName.getText());
+            customer.setPhoneNumber(phoneInt);
+            address.setStreet(street.getText());
+            address.setHouseNo(hounseInt);
+            address.setPostalCode(postInt);
+            address.setCity(city.getText());
 
-        customer.setFirstName(firstName.getText());
-        customer.setLastName(lastName.getText());
-        customer.setPhoneNumber(Integer.parseInt(phoneNumber.getText()));
-        address.setStreet(street.getText());
-        address.setHouseNo(Integer.parseInt(houseNr.getText()));
-        address.setPostalCode(Integer.parseInt(postalCode.getText()));
-        address.setCity(city.getText());
+            if(!validPhoneNumber){
+                newCustomerException.setText("Telefonnummer används redan");
+                newCustomerException.setManaged(true);
+                newCustomerException.setVisible(true);
+            }
 
-        ViewManager viewManager = new ViewManager(); // Här borde man kunna uppdatera Customer och Address objekten där uppe och direkt anropa tex CustomerDAO för att uppdatera
-        //Lägg till alla andra villkor
-        if (!firstName.getText().isBlank()) {
-            viewManager.updateCustomer(customer, address);
-            //viewManager.getNewInfo(firstName.getText(), lastName.getText(), street.getText(), Integer.parseInt(houseNr.getText()), Integer.parseInt(postalCode.getText()), city.getText(), loggedIn);
+            if (!firstName.getText().isBlank() && validPhoneNumber) {
+                viewManager.updateCustomer(customer, address);
+                newCustomerException.setText("Uppgifter sparade");
+            }
+
         }
+        catch(NumberFormatException nfe){
+            nfe.printStackTrace();
+            newCustomerException.setText("Kontrollera inmatningarna");
+            newCustomerException.setManaged(true);
+            newCustomerException.setVisible(true);
+        }
+
     }
     @FXML
     private void onBackButtonClick() throws IOException {

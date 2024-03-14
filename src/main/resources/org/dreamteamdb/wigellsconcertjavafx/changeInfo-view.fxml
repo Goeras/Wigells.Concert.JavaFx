@@ -22,5 +22,6 @@
         <Button text="Spara ny info" onAction="#onSaveButtonClick"/>
         <Button text="Tillbaka" onAction="#onBackButtonClick"/>
         <Button text="Ta bort din användare" onAction="#onDeleteClick"/>
+        <Label fx:id="newCustomerException" text="Telefonnummer används redan" managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
     </VBox>
 </AnchorPane>
