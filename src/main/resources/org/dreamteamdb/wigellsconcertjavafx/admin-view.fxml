@@ -60,6 +60,7 @@
             <HBox>
                 <Button fx:id="saveConcert" text="Spara ny konsert" onAction="#onSaveConcertButton"/>
                 <Button text="Stäng"  onAction="#onCloseNewConcert"/>
+                <Label fx:id="newConcertException" text="Kontrollera inmatningarna." managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
             </HBox>
 
         </VBox>
@@ -73,6 +74,7 @@
             <HBox>
                 <Button text="Uppdatera konsert" onAction="#onSaveUpdateConcert"/>
                 <Button text="Stäng" style="-fx-font-size: 13" onAction="#onCloseUpdateConcert"/>
+                <Label fx:id="updateConcertException" text="Kontrollera inmatningarna." managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
             </HBox>
 
         </VBox>
@@ -105,6 +107,7 @@
             <HBox>
                 <Button text="Spara" onAction="#onSaveNewArena"/>
                 <Button text="Stäng" onAction="#onCloseNewArena"/>
+                <Label fx:id="newArenaException" text="Kontrollera inmatningarna." managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
             </HBox>
 
         </VBox>
@@ -118,9 +121,11 @@
             <HBox>
                 <Button text="Spara" onAction="#onSaveUpdateArenaButton"/>
                 <Button text="Stäng" onAction="#onCloseUpdateArena"/>
+                <Label fx:id="updateArenaException" text="Kontrollera inmatningarna." managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
             </HBox>
         </VBox>
     </VBox>
         <Button text="Logga ut" onAction="#onLogoutButtonClick"/>
+
     </VBox>
 </ScrollPane>
