@@ -15,6 +15,7 @@ import org.dreamteamdb.wigellsconcertjavafx.Entitys.Customer;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class AdminViewController {
@@ -264,6 +265,11 @@ public class AdminViewController {
         catch (NumberFormatException NFE) {
             NFE.printStackTrace();
 
+            updateConcertException.setManaged(true);
+            updateConcertException.setVisible(true);
+        }
+        catch (DateTimeParseException DTE) {
+            DTE.printStackTrace();
             updateConcertException.setManaged(true);
             updateConcertException.setVisible(true);
         }
