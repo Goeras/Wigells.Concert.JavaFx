@@ -6,14 +6,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.geometry.Insets?>
+<ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.AdminViewController"
             prefHeight="400.0" prefWidth="600.0">
-<VBox>
+
+<VBox spacing="10" style="-fx-font-size: 13">
+    <padding>
+        <Insets right="10" left="10" top="10" bottom="10"/>
+    </padding>
     <VBox>
+        <Label text="Kommande konserter" style="-fx-font-size: 15"/>
         <HBox>
-            <TableView fx:id= "upComingConcerts" prefHeight="200" prefWidth="500">
+            <TableView fx:id= "upComingConcerts" prefHeight="200" maxWidth="500">
                 <columns>
                     <TableColumn fx:id="upcomingDate" text="Datum"/>
                     <TableColumn fx:id="upcomingArtist" text="Artist"/>
@@ -24,85 +30,97 @@
                 </columns>
             </TableView>
             <VBox>
-                <Button fx:id="seeConcertCustomers" text="Se kundlista för markerad konsert" onAction="#onSeeCustButton"/>
+                <Label fx:id="markLabel" text="Markera konsert" managed="false" visible="false" textFill="red"/>
+                <Button fx:id="seeConcertCustomers" text="Se kundlista" onAction="#onSeeCustButton"/>
                 <Button text="Ny konsert" onAction="#onNewConcertButton"/>
-                <Button text="Ta bort markerad konsert" onAction="#onDeleteConcert"/>
-                <Button text="Uppdatera markerad konsert" onAction="#onUpdateConcertButton"/>
+                <Button text="Ta bort konsert" onAction="#onDeleteConcert"/>
+                <Button text="Uppdatera konsert" onAction="#onUpdateConcertButton"/>
             </VBox>
         </HBox>
+        <HBox fx:id="concertCustomersBox" managed="false" visible="false" >
+            <TableView fx:id="concertCustomers" maxWidth="560">
+                <columns>
+                    <TableColumn fx:id="id" text="KundId" maxWidth="60"/>
+                    <TableColumn fx:id="name" text="Namn" minWidth="100"/>
+                    <TableColumn fx:id="streetAddress" text="Gata" minWidth="100"/>
+                    <TableColumn fx:id="postAddress" text="Postadress" minWidth="100"/>
+                    <TableColumn fx:id="birthdate" text="Födelsedatum" minWidth="100"/>
+                    <TableColumn fx:id="phoneNr" text="Telefonr" minWidth="100"/>
+                </columns>
+            </TableView>
+            <Button text="Stäng" onAction="#onCloseCustomerButtonClick"/>
+        </HBox>
 
-        <TableView fx:id="concertCustomers" managed="false" visible="false">
-            <columns>
-                <TableColumn fx:id="id" text="KundId"/>
-                <TableColumn fx:id="name" text="Namn"/>
-                <TableColumn fx:id="streetAddress" text="Gata"/>
-                <TableColumn fx:id="postAddress" text="Postadress"/>
-                <TableColumn fx:id="birthdate" text="Födelsedatum"/>
-                <TableColumn fx:id="phoneNr" text="Telefonnummer"/>
-            </columns>
-        </TableView>
         <VBox fx:id="newConcert" managed="false" visible="false">
             <TextField fx:id="newConcertArtist" promptText="Artist" maxWidth="150"/>
             <TextField fx:id="newConcertAge" promptText="Åldersgräns" maxWidth="150"/>
             <TextField fx:id="newConcertPrice" promptText="Biljettpris" maxWidth="150"/>
             <TextField fx:id="newConcertDate" promptText="Datum" maxWidth="150"/>
             <ChoiceBox fx:id="arenaChoiceBox"/>
-            <Button fx:id="saveConcert" text="Spara ny konsert" onAction="#onSaveConcertButton"/>
+            <HBox>
+                <Button fx:id="saveConcert" text="Spara ny konsert" onAction="#onSaveConcertButton"/>
+                <Button text="Stäng"  onAction="#onCloseNewConcert"/>
+            </HBox>
+
         </VBox>
         <VBox fx:id="updateConcert" managed="false" visible="false">
             <TextField fx:id="updateConcertArtist" promptText="Artist" maxWidth="150"/>
-            <TextField fx:id="updateConcertArena" promptText="Arena" maxWidth="150"/>
-            <TextField fx:id="updateConcertPrice" promptText="Biljettpris" maxWidth="150"/>
+            <TextField fx:id="updateConcertArena" promptText="Arena" maxWidth="150" />
+            <TextField fx:id="updateConcertPrice" promptText="Biljettpris" maxWidth="150" />
             <TextField fx:id="updateConcertAge" promptText="Åldersgräns" maxWidth="150"/>
             <TextField fx:id="updateConcertDate" promptText="Datum" maxWidth="150"/>
             <ChoiceBox fx:id="updateArenaChoice"/>
-            <Button text="Uppdatera konsert" onAction="#onSaveUpdateConcert"/>
+            <HBox>
+                <Button text="Uppdatera konsert" onAction="#onSaveUpdateConcert"/>
+                <Button text="Stäng" style="-fx-font-size: 13" onAction="#onCloseUpdateConcert"/>
+            </HBox>
+
         </VBox>
     </VBox>
+    <VBox>
+    <Label text="Arenor" style="-fx-font-size: 15"/>
         <HBox>
             <TableView fx:id="arenas" prefWidth="500" prefHeight="200">
                 <columns>
-                    <TableColumn fx:id="arenaName" text="Namn"/>
+                    <TableColumn fx:id="arenaName" text="Namn" />
                     <TableColumn fx:id="arenaStreet" text="Gata"/>
                     <TableColumn fx:id="arenaPost" text="Postadress"/>
                     <TableColumn fx:id="arenaIndoor" text="Inomhus"/>
                 </columns>
             </TableView>
             <VBox>
-                <Button text="Uppdatera Arena" onAction="#onUpdateArenaButton"/>
+                <Label fx:id="markLabel2" text="Markera konsert" managed="false" visible="false" textFill="red"/>
+                <Button text="Ny arena" onAction="#onNewArenaButton"  />
                 <Button text="Ta bort arena" onAction="#onDeleteArena"/>
-                <Button text="Ny arena" onAction="#onNewArenaButton"/>
-                <Button text="Se konserter arena"/>
+                <Button text="Uppdatera Arena" onAction="#onUpdateArenaButton" />
             </VBox>
         </HBox>
-        <TableView fx:id="concertArenas" managed="false" visible="false">
-            <columns>
-                <TableColumn fx:id="arenaconcertid"/>
-                <TableColumn fx:id="artist"/>
-                <TableColumn fx:id="date"/>
-                <TableColumn fx:id="price"/>
-            </columns>
-        </TableView>
-
         <VBox fx:id="newArena" managed="false" visible="false">
-            <TextField fx:id="newArenaName" promptText="Namn"/>
-            <TextField fx:id="newArenaStreet" promptText="Gata"/>
-            <TextField fx:id="newArenaHouse" promptText="Husnummer"/>
-            <TextField fx:id="newArenaPostal" promptText="Postkod"/>
-            <TextField fx:id="newArenaCity" promptText="Stad"/>
+            <TextField fx:id="newArenaName" promptText="Namn" maxWidth="150"/>
+            <TextField fx:id="newArenaStreet" promptText="Gata" maxWidth="150"/>
+            <TextField fx:id="newArenaHouse" promptText="Husnummer" maxWidth="150"/>
+            <TextField fx:id="newArenaPostal" promptText="Postkod" maxWidth="150"/>
+            <TextField fx:id="newArenaCity" promptText="Stad" maxWidth="150"/>
             <CheckBox fx:id="indoorCheckBox" text="Indoor"/>
-            <Button text="Spara" onAction="#onSaveNewArena"/>
-        </VBox>
+            <HBox>
+                <Button text="Spara" onAction="#onSaveNewArena"/>
+                <Button text="Stäng" onAction="#onCloseNewArena"/>
+            </HBox>
 
-        <VBox fx:id="updateArena" managed="false" visible="false">
-            <TextField fx:id="updateName"/>
-            <TextField fx:id="updateStreet"/>
-            <TextField fx:id="updateHouse"/>
-            <TextField fx:id="updatePostal"/>
-            <TextField fx:id="updateCity"/>
-            <CheckBox fx:id="indoorcheck" text="Indoor"/>
-            <Button text="Soara" onAction="#onSaveUpdateArenaButton"/>
         </VBox>
+        <VBox fx:id="updateArena" managed="false" visible="false">
+            <TextField fx:id="updateName" maxWidth="150"/>
+            <TextField fx:id="updateStreet" maxWidth="150"/>
+            <TextField fx:id="updateHouse" maxWidth="150"/>
+            <TextField fx:id="updatePostal" maxWidth="150"/>
+            <TextField fx:id="updateCity" maxWidth="150"/>
+            <CheckBox fx:id="indoorcheck" text="Indoor"/>
+            <HBox>
+                <Button text="Spara" onAction="#onSaveUpdateArenaButton"/>
+                <Button text="Stäng" onAction="#onCloseUpdateArena"/>
+            </HBox>
+        </VBox>
+    </VBox>
         <Button text="Logga ut" onAction="#onLogoutButtonClick"/>
     </VBox>
-</AnchorPane>
+</ScrollPane>

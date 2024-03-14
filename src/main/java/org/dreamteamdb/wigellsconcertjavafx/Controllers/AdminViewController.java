@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.dreamteamdb.wigellsconcertjavafx.Entitys.Address;
@@ -115,6 +116,12 @@ public class AdminViewController {
     private ChoiceBox<Arena> updateArenaChoice;
     @FXML
     private TextField updateConcertArena;
+    @FXML
+    private Label markLabel;
+    @FXML
+    private Label markLabel2;
+    @FXML
+    private HBox concertCustomersBox;
 
     ObservableList<Arena> observableList;
 
@@ -150,13 +157,22 @@ public class AdminViewController {
     @FXML
     public void onSeeCustButton() {
       Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
-      List<Customer> customerList = viewManager.concertDAO.readConcert(concert.getId()).getCustomerList();
-        ObservableList customers = FXCollections.observableList(customerList);
-        concertCustomers.setItems(customers);
-        if (!concertCustomers.isVisible()) {
-            concertCustomers.setVisible(true);
-            concertCustomers.setManaged(true);
-        }
+      if(concert == null && !markLabel.isManaged()){
+          markLabel.setManaged(true);
+          markLabel.setVisible(true);
+      }
+      else if(concert!=null){
+          List<Customer> customerList = viewManager.concertDAO.readConcert(concert.getId()).getCustomerList();
+          ObservableList customers = FXCollections.observableList(customerList);
+          concertCustomers.setItems(customers);
+          if(markLabel.isManaged()){
+              markLabel.setManaged(false);
+          markLabel.setVisible(false);}
+          if (!concertCustomersBox.isVisible()) {
+              concertCustomersBox.setVisible(true);
+              concertCustomersBox.setManaged(true);
+          }
+      }
     }
     @FXML
     public void onNewConcertButton(){
@@ -189,37 +205,59 @@ public class AdminViewController {
     @FXML
     public void onUpdateConcertButton(){
             Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
+            if(concert != null){
+                if(markLabel.isManaged()){
+                    markLabel.setVisible(false);
+                    markLabel.setManaged(false);
+                }
             updateConcertArtist.setText(concert.getArtistName());
             updateConcertDate.setText(concert.getDate().toString());
             updateConcertAge.setText(Integer.toString(concert.getAgeLimit()));
             updateConcertPrice.setText(Double.toString(concert.getTicketPrice()));
             updateConcertArena.setText(concert.getArena().getName());
             updateArenaChoice.setItems(observableList);
-        if(!updateConcert.isManaged()){
-            updateConcert.setManaged(true);
-            updateConcert.setVisible(true);
-        }
+                if(!updateConcert.isManaged()){
+                    updateConcert.setManaged(true);
+                    updateConcert.setVisible(true);
+                }
+            }
+            else {
+                if(!markLabel.isManaged()){
+                markLabel.setManaged(true);
+                markLabel.setVisible(true);}
+            }
+
     }
     @FXML
     public void onSaveUpdateConcert(){
         Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
         if(updateArenaChoice.getValue() != null){
-        concert.setArena((Arena) updateArenaChoice.getValue());}
+            concert.setArena((Arena) updateArenaChoice.getValue());
+        }
         concert.setArtistName(updateConcertArtist.getText());
         concert.setTicketPrice(Double.parseDouble(updateConcertPrice.getText()));
         concert.setDate(LocalDate.parse(updateConcertDate.getText()));
         concert.setAgeLimit(Integer.parseInt(updateConcertAge.getText()));
-        viewManager.concertDAO.updateConcert(concert);
-        if(updateConcert.isManaged()){
-            updateConcert.setVisible(false);
-            updateConcert.setManaged(false);
-        }
+            viewManager.concertDAO.updateConcert(concert);
+            if(updateConcert.isManaged()){
+                updateConcert.setVisible(false);
+                updateConcert.setManaged(false);
+            }
     }
     @FXML
     public void onDeleteConcert(){
         Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
-        viewManager.deleteConcert(concert);
-        upcomingConcertList.remove(concert);
+        if(concert == null){
+            markLabel.setManaged(true);
+            markLabel.setVisible(true);}
+        else{
+            viewManager.deleteConcert(concert);
+            upcomingConcertList.remove(concert);
+            if(markLabel.isManaged()){
+                markLabel.setManaged(false);
+                markLabel.setVisible(false);
+            }
+        }
         upComingConcerts.refresh();
     }
     @FXML
@@ -254,24 +292,32 @@ public class AdminViewController {
     @FXML
     public void onUpdateArenaButton(){
         Arena arena = arenas.getSelectionModel().getSelectedItem();
-        if(arena != null){
+        if(arena != null) {
             updateName.setText(arena.getName());
             updateStreet.setText(arena.getAddress().getStreet());
             updateHouse.setText(Integer.toString(arena.getAddress().getHouseNo()));
             updatePostal.setText(Integer.toString(arena.getAddress().getPostalCode()));
             updateCity.setText(arena.getAddress().getCity());
-            if(arena.isInside()){
+            if (arena.isInside()) {
                 indoorcheck.setSelected(true);
-            }
-            else {
+            } else {
                 indoorcheck.setSelected(false);
             }
+            if (!updateArena.isManaged()) {
+                updateArena.setManaged(true);
+                updateArena.setVisible(true);
+            }
+            if(markLabel2.isManaged()){
+                markLabel2.setVisible(false);
+                markLabel2.setManaged(false);
+            }
         }
-        if(!updateArena.isManaged()){
-            updateArena.setManaged(true);
-            updateArena.setVisible(true);
+        else {
+            if (!markLabel2.isManaged()) {
+                markLabel2.setVisible(true);
+                markLabel2.setManaged(true);
+            }
         }
-
     }
     @FXML
     public void onSaveUpdateArenaButton(){
@@ -299,8 +345,54 @@ public class AdminViewController {
     @FXML
     public void onDeleteArena(){
         Arena arena = arenas.getSelectionModel().getSelectedItem();
-        viewManager.deleteArena(arena);
-        observableList.remove(arena);
+        if(arena != null) {
+            viewManager.deleteArena(arena);
+            observableList.remove(arena);
+            if(markLabel2.isManaged()){
+                markLabel2.setManaged(false);
+                markLabel2.setVisible(false);
+            }
+        }
+        else{
+            markLabel2.setVisible(true);
+            markLabel2.setManaged(true);
+        }
         arenas.refresh();
     }
+    @FXML
+    public void onCloseCustomerButtonClick(){
+        if(concertCustomersBox.isVisible()){
+            concertCustomersBox.setVisible(false);
+            concertCustomersBox.setManaged(false);
+        }
+    }
+    @FXML
+    public void onCloseUpdateConcert(){
+        if(updateConcert.isManaged())
+        updateConcert.setManaged(false);
+        updateConcert.setVisible(false);
+    }
+
+    @FXML
+    public void onCloseNewConcert(){
+        if(newConcert.isManaged()){
+            newConcert.setManaged(false);
+            newConcert.setVisible(false);
+        }
+    }
+    @FXML
+    public void onCloseNewArena(){
+        if(newArena.isManaged()){
+            newArena.setManaged(false);
+            newArena.setVisible(false);
+        }
+    }
+    @FXML
+    public void onCloseUpdateArena(){
+        if(updateArena.isManaged()){
+            updateArena.setVisible(false);
+            updateArena.setManaged(false);
+        }
+    }
+
 }
