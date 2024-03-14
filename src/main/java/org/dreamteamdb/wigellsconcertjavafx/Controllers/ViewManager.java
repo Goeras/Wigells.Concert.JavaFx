@@ -72,7 +72,6 @@ public class ViewManager {
         customerDAO.updateCustomer(customer);
         ObservableList<Concert> observableList = FXCollections.observableList(customer.getConcertList());
         return observableList;
-
     }
 
     public ObservableList<Concert> upcomingConcerts(){
@@ -126,6 +125,24 @@ public class ViewManager {
     public SimpleStringProperty getCustomerPhone(int id){
         Customer customer = getCustomerById(id);
         return new SimpleStringProperty(Integer.toString(customer.getPhoneNumber()));
+    }
+
+    public boolean validatePhoneNumber(String phoneNumber){
+        List<Customer> customerList = customerDAO.getAllCustomers();
+        try{
+            int phoneInt = Integer.parseInt(phoneNumber);
+            for(Customer customer : customerList){
+                if(customer.getPhoneNumber() == phoneInt){
+                    return false;
+                }
+            }
+
+        }
+        catch(NumberFormatException nfe){
+            nfe.printStackTrace();
+            return false;
+        }
+        return true;
     }
     public SimpleStringProperty toStringProperty(String string){
         return new SimpleStringProperty(string);
