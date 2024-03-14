@@ -6,22 +6,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<StackPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.ChangeInfoController"
             prefHeight="400.0" prefWidth="600.0">
-    <VBox>
-        <Label/>
-        <TextField fx:id="firstName"/>
-        <TextField fx:id="lastName"/>
-        <TextField fx:id="phoneNumber"/>
-        <TextField fx:id="street"/>
-        <TextField fx:id="houseNr"/>
-        <TextField fx:id="postalCode"/>
-        <TextField fx:id="city"/>
-        <Button text="Spara ny info" onAction="#onSaveButtonClick"/>
+    <VBox alignment="CENTER" style="-fx-font-size: 13" spacing="20">
+        <Label text="Wigells Concert" style="-fx-font-size: 20"/>
+        <VBox spacing="5" alignment="CENTER">
+            <Label text="Ändra information" style="-fx-font-size: 15"/>
+            <TextField fx:id="firstName" maxWidth="150"/>
+            <TextField fx:id="lastName" maxWidth="150"/>
+            <TextField fx:id="phoneNumber" maxWidth="150"/>
+            <TextField fx:id="street" maxWidth="150"/>
+            <TextField fx:id="houseNr" maxWidth="150"/>
+            <TextField fx:id="postalCode" maxWidth="150"/>
+            <TextField fx:id="city" maxWidth="150"/>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="5">
+            <Button text="Spara ny info" onAction="#onSaveButtonClick" minWidth="150"/>
+            <Button text="Ta bort din användare" onAction="#onDeleteClick" minWidth="150"/>
+        </HBox>
         <Button text="Tillbaka" onAction="#onBackButtonClick"/>
-        <Button text="Ta bort din användare" onAction="#onDeleteClick"/>
+
         <Label fx:id="newCustomerException" text="Telefonnummer används redan" managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
     </VBox>
-</AnchorPane>
+</StackPane>
