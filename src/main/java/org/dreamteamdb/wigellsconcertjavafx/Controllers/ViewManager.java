@@ -187,13 +187,11 @@ public class ViewManager {
         customerDAO.deleteCustomer(customer);
     }
 
-    public void deleteConcert(int id){
-        Concert concert = concertDAO.readConcert(id);
+    public void deleteConcert(Concert concert){
         concertDAO.deleteConcert(concert);
     }
 
-    public void deleteArena(int id){
-        Arena arena = arenaDAO.readArena(id);
+    public void deleteArena(Arena arena){
         arenaDAO.deleteArena(arena);
     }
 

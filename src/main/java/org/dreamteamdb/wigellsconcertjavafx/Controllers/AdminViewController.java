@@ -216,6 +216,11 @@ public class AdminViewController {
         }
     }
     @FXML
+    public void onDeleteConcert(){
+        Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
+        viewManager.deleteConcert(concert);
+    }
+    @FXML
     public void onNewArenaButton(){
         if(!newArena.isManaged()){
             newArena.setManaged(true);
@@ -286,5 +291,13 @@ public class AdminViewController {
     public void onLogoutButtonClick() throws IOException {
         Stage stage = (Stage) updateConcertArena.getScene().getWindow();
         viewManager.loadLoginPage(stage);
+    }
+
+
+    @FXML
+    public void onDeleteArena(){
+        Arena arena = arenas.getSelectionModel().getSelectedItem();
+        viewManager.deleteArena(arena);
+        arenas.refresh();
     }
 }

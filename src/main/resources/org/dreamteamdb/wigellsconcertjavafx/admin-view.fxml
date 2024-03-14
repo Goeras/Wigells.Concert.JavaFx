@@ -26,7 +26,7 @@
             <VBox>
                 <Button fx:id="seeConcertCustomers" text="Se kundlista för markerad konsert" onAction="#onSeeCustButton"/>
                 <Button text="Ny konsert" onAction="#onNewConcertButton"/>
-                <Button text="Ta bort markerad konsert"/>
+                <Button text="Ta bort markerad konsert" onAction="#onDeleteConcert"/>
                 <Button text="Uppdatera markerad konsert" onAction="#onUpdateConcertButton"/>
             </VBox>
         </HBox>
@@ -70,7 +70,7 @@
             </TableView>
             <VBox>
                 <Button text="Uppdatera Arena" onAction="#onUpdateArenaButton"/>
-                <Button text="Ta bort arena"/>
+                <Button text="Ta bort arena" onAction="#onDeleteArena"/>
                 <Button text="Ny arena" onAction="#onNewArenaButton"/>
                 <Button text="Se konserter arena"/>
             </VBox>
