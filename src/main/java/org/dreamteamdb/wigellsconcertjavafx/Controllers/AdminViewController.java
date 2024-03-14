@@ -219,6 +219,8 @@ public class AdminViewController {
     public void onDeleteConcert(){
         Concert concert = upComingConcerts.getSelectionModel().getSelectedItem();
         viewManager.deleteConcert(concert);
+        upcomingConcertList.remove(concert);
+        upComingConcerts.refresh();
     }
     @FXML
     public void onNewArenaButton(){
@@ -298,6 +300,7 @@ public class AdminViewController {
     public void onDeleteArena(){
         Arena arena = arenas.getSelectionModel().getSelectedItem();
         viewManager.deleteArena(arena);
+        observableList.remove(arena);
         arenas.refresh();
     }
 }
