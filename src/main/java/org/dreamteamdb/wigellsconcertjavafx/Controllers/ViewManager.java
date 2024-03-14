@@ -326,7 +326,7 @@ public class ViewManager {
     }
     public void loadAdminPage(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 650);
+        Scene scene = new Scene(fxmlLoader.load(), 640, 650);
         stage.setTitle("Admin");
         stage.setScene(scene);
         stage.show();
