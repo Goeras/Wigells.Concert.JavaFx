@@ -422,9 +422,10 @@ public class AdminViewController {
     }
     @FXML
     public void onCloseUpdateConcert(){
-        if(updateConcert.isManaged())
-        updateConcert.setManaged(false);
-        updateConcert.setVisible(false);
+        if(updateConcert.isManaged()) {
+            updateConcert.setManaged(false);
+            updateConcert.setVisible(false);
+        }
     }
 
     @FXML

@@ -126,9 +126,18 @@ public class ViewManager {
     public boolean validatePhoneNumber(int phoneNumber){
         List<Customer> customerList = customerDAO.getAllCustomers();
         try{
-            for(Customer customer : customerList){
-                if(CurrentUser.getInstance().getCurrentUser().getPhoneNumber() != phoneNumber && customer.getPhoneNumber() == phoneNumber){
-                    return false;
+            if(CurrentUser.getInstance().getCurrentUser() == null) {
+                for (Customer customer : customerList) {
+                    if (customer.getPhoneNumber() == phoneNumber) {
+                        return false;
+                    }
+                }
+            }
+            else{
+                for (Customer customer : customerList) {
+                    if (CurrentUser.getInstance().getCurrentUser().getPhoneNumber() != phoneNumber && customer.getPhoneNumber() == phoneNumber) {
+                        return false;
+                    }
                 }
             }
         }
