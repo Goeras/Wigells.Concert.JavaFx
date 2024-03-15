@@ -308,7 +308,7 @@ public class ViewManager {
         stage.show();
     }
     public void loadLoginPage(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 650);
         stage.setTitle("Wigello Concerto");
         stage.setScene(scene);

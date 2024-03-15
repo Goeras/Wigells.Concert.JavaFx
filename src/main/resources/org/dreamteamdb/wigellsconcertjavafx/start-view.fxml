@@ -7,13 +7,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.HBox?>
+  <?import     javafx.scene.layout.*?>
+<?import java.net.URL?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox alignment="CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.HelloController">
+      fx:controller="org.dreamteamdb.wigellsconcertjavafx.Controllers.StartController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
   </padding>
-    <Label fx:id="welcomeText" text="Wigells Concert" style="-fx-font-size: 20px"/>
+  <Label fx:id="welcomeText" text="Wigells Concert" style="-fx-font-size: 20px"/>
     <Label fx:id="loginexception" text="Fel användarnamn eller lösenord" managed="false" visible="false" style="-fx-font-size: 15px; -fx-text-fill: red"/>
     <Label text="Telefonnummer" style="-fx-font-size: 16"/>
 
@@ -25,4 +29,6 @@
       <Button text="Ny kund" onAction="#onNewCustButtonClick"/>
     </HBox>
     <Button text="Admin" onAction="#onAdminButtonClick"/>
-</VBox>
+  </VBox>
+
+

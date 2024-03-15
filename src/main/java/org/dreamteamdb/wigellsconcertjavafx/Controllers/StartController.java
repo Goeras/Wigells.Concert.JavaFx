@@ -1,7 +1,7 @@
 package org.dreamteamdb.wigellsconcertjavafx.Controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloController {
+public class StartController {
     @FXML
     private Label welcomeText;
     @FXML
@@ -18,6 +18,10 @@ public class HelloController {
     private TextField phoneNumber;
     @FXML
     private Label loginexception;
+
+
+    public void initialize(){
+    }
 
 
     @FXML
@@ -48,5 +52,9 @@ public class HelloController {
         ViewManager viewManager = new ViewManager();
         Stage stage = (Stage) welcomeText.getScene().getWindow();
         viewManager.loadAdminLogInPage(stage);
+    }
+    public Scene getScene(){
+       Scene scene = welcomeText.getScene();
+        return scene;
     }
 }
