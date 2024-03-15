@@ -119,7 +119,5 @@ public class CustomerController {
         Stage stage = (Stage) name.getScene().getWindow();
         viewManager.loadChangeInfoPage(stage);
     }
-    public void onDeleteButton(){
-        //Skapa deletemetod i viewManager
-    }
+
 }

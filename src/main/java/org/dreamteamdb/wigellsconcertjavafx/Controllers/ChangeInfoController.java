@@ -71,6 +71,8 @@ public class ChangeInfoController {
             if (!firstName.getText().isBlank() && validPhoneNumber) {
                 viewManager.updateCustomer(customer, address);
                 newCustomerException.setText("Uppgifter sparade");
+                newCustomerException.setManaged(true);
+                newCustomerException.setVisible(true);
             }
 
         }

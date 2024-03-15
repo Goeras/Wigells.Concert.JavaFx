@@ -273,6 +273,7 @@ public class AdminViewController {
             updateConcertException.setManaged(true);
             updateConcertException.setVisible(true);
         }
+        upComingConcerts.refresh();
 
     }
     @FXML
@@ -358,6 +359,7 @@ public class AdminViewController {
                 markLabel2.setManaged(true);
             }
         }
+
     }
     @FXML
     public void onSaveUpdateArenaButton() {
@@ -382,6 +384,10 @@ public class AdminViewController {
             updateArenaException.setManaged(true);
             updateArenaException.setVisible(true);
         }
+        arenas.refresh();
+        upcomingConcertList = FXCollections.observableList(viewManager.concertDAO.readAllConcerts());
+        upComingConcerts.setItems(upcomingConcertList);
+        //upComingConcerts.refresh();
     }
     @FXML
     public void onLogoutButtonClick() throws IOException {

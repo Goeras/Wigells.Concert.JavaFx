@@ -129,11 +129,10 @@ public class ViewManager {
         List<Customer> customerList = customerDAO.getAllCustomers();
         try{
             for(Customer customer : customerList){
-                if(customer.getPhoneNumber() == phoneNumber){
+                if(CurrentUser.getInstance().getCurrentUser().getPhoneNumber() != phoneNumber && customer.getPhoneNumber() == phoneNumber){
                     return false;
                 }
             }
-
         }
         catch(NumberFormatException nfe){
             nfe.printStackTrace();
