@@ -53,9 +53,7 @@ public class ViewManager {
         return new SimpleIntegerProperty(age);
     }
 
-    public ObservableList<Concert> customerTickets(Customer customer/*int customerId*/){
-        //OBS TEST BYT TILL INLÄSNING FRÅN DATABAS
-        //Customer customer = getCustomerById(customerId); // = customerDAO.getCustomerById(customerId);
+    public ObservableList<Concert> customerTickets(Customer customer){
         ObservableList<Concert> observableList = FXCollections.observableList(customer.getConcertList());
         return observableList;
     }
@@ -143,22 +141,9 @@ public class ViewManager {
     public SimpleStringProperty toStringProperty(String string){
         return new SimpleStringProperty(string);
     }
-    //OBS BYT TILL INLÄSNING DETTA ÄR BARA TEST
+
     public Customer getCustomerById(int id){
         Customer customer = customerDAO.getCustomerById(id);
-
-        /*Customer customer = new Customer();
-        customer.setFirstName("förnamn");
-        customer.setLastName("efternamn");
-        customer.setBirthDate(LocalDate.now());
-
-        Address address = new Address();
-        address.setStreet("Gata");
-        address.setHouseNo(1);
-        address.setPostalCode(12345);
-        address.setCity("Stad");
-
-        customer.setAddress(address);*/
         return customer;
     }
 
@@ -242,12 +227,6 @@ public class ViewManager {
     }
 
     public void updateCustomer(Customer customer, Address address){
-        /*Customer customer = customerDAO.getCustomerById(id);
-        customer.setFirstName(firstName);
-        customer.setLastName(lastName);
-        customer.setPhoneNumber(phoneNumber);
-        customer.setAddress(address);*/
-
         addressDAO.updateAddress(address);
         customerDAO.updateCustomer(customer);
     }
@@ -273,7 +252,6 @@ public class ViewManager {
     }
 
     public void getNewInfo(String firstName, String lastName, String street, int housenumber, int postalCode, String city, int id){
-        //BYT TILL UPDATE METOD
     }
     public void newCustomer(String firstName, String lastName, int phoneNumber, String street, int housenumber, int postalCode, String city, LocalDate localDate, String password){
         Address address = new Address();

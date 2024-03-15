@@ -71,11 +71,6 @@ public class CustomerController {
         postAddress.setText(customer.getAddress().getPostalCode() + " " + customer.getAddress().getCity());
         birthdate.setText(customer.getBirthDate().toString());
 
-        /*name.setText(viewManager.getCustomerFirstName(loggedIn) + " " + viewManager.getCustomerLastName(loggedIn));
-        address.setText(viewManager.getStreetAdress(loggedIn) + " " + viewManager.getHouseNumber(loggedIn));
-        postAddress.setText(viewManager.getPostalCode(loggedIn) + " " + viewManager.getCity(loggedIn));
-        birthdate.setText(viewManager.getCustBirthDay(loggedIn));*/
-
         yourArtist.setCellValueFactory(new PropertyValueFactory<>("artistName"));
         yourArena.setCellValueFactory(cellData -> viewManager.arenaProperty(cellData.getValue().getArena()));
         yourDate.setCellValueFactory(cellData -> viewManager.dateProperty(cellData.getValue().getDate()));
@@ -91,8 +86,6 @@ public class CustomerController {
         upcomingPrice.setCellValueFactory(cellData -> viewManager.priceProperty(cellData.getValue().getTicketPrice()).asObject());
         upcomingMinAge.setCellValueFactory(cellData -> viewManager.ageProperty(cellData.getValue().getAgeLimit()).asObject());
         upcomingTickets.setItems(upcomingConcertList);
-
-
     }
     @FXML
     public void onBuyTicketsClick(){
